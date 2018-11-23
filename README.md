@@ -1,2 +1,2 @@
-# groop_dynamic_13
+# groop(Yes i know that group is aright way)_dynamic_13
 DTR
