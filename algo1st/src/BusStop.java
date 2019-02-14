@@ -2,21 +2,41 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BusStop {
+    /** fields **/
     String name;
+
+    // all neighboring stops
     HashMap <BusStop, Double> neighbours;
+    // distance to all stops
     HashMap <BusStop, Double> distances;
+    // how to get to any stop
     HashMap <BusStop, BusStop> path;
+
+    /***
+     * Constructor with initialising all fields
+     * @param name
+     */
     public BusStop(String name){
         this.name = name;
         neighbours = new HashMap<>();
         distances = new HashMap<>();
         path = new HashMap<>();
     }
+
+    /**
+     * Property of adding neighbour to BusStop
+     * @param anotherStop
+     * @param dist
+     */
     void addNeighbour(BusStop anotherStop, double dist){
         neighbours.put(anotherStop, dist);
     }
 
     // TO TEST!
+
+    /**
+     * Counting distances to all of the stops
+     */
     void countDistances(){
         HashMap<BusStop, Boolean> visited = new HashMap<>();
         distances.put(this, Double.valueOf(0));
@@ -53,6 +73,12 @@ public class BusStop {
             }
         }
     }
+
+    /**
+     * Property of getting distance to another stop
+     * @param anotherStop
+     * @return
+     */
     Double getDistance(BusStop anotherStop){
         return distances.get(anotherStop);
     }
