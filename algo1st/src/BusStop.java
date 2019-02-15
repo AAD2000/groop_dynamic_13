@@ -37,23 +37,21 @@ public class BusStop {
     /**
      * Counting distances to all of the stops
      */
-    void countDistances(){
+    void countDistances(City city){
         HashMap<BusStop, Boolean> visited = new HashMap<>();
-        distances.put(this, Double.valueOf(0));
-        path.put(this, null);
-        visited.put(this, false);
         int visitedStops = 0;
-        for (BusStop s:neighbours.keySet()) {
+        for (BusStop s:city.stops) {
             distances.put(s, Double.MAX_VALUE);
             path.put(s, null);
             visited.put(s, false);
         }
+        distances.replace(this, Double.valueOf(0));
         int size = distances.size();
         while(visitedStops != size){
             BusStop v = null;
             for (BusStop s:distances.keySet()){
                 if(!visited.get(s)){
-                    if(v.equals(null)){
+                    if(v == null){
                         v = s;
                     }
                     else if (distances.get(s) < distances.get(v)){
@@ -65,8 +63,8 @@ public class BusStop {
             visitedStops++;
             for(BusStop s:v.neighbours.keySet()){
                 if(!visited.get(s)){
-                    if(distances.get(s) > distances.get(v) + v.getDistance(s)){
-                        distances.replace(s, distances.get(v) + v.getDistance(s));
+                    if(distances.get(s) > distances.get(v) + v.neighbours.get(s)){
+                        distances.replace(s, distances.get(v) + v.neighbours.get(s));
                         path.replace(s, v);
                     }
                 }
@@ -83,4 +81,8 @@ public class BusStop {
         return distances.get(anotherStop);
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

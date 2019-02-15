@@ -18,12 +18,11 @@ public class Trip {
     /***
      * Property of making start trip
      * @param elements
-     * @param x
-     * @param y
+     * @param startStop
      */
-    void makeSimplestTrip(ArrayList<Element> elements, int x, int y)
+    void makeSimplestTrip(ArrayList<Element> elements, BusStop startStop)
     {
-        Element location = new Element(x, y, "start point", true);
+        Element location = new Element(startStop, "start point", true);
         trip.add(location);
         int used = 0;
         int usedToBe = 0;
@@ -115,7 +114,7 @@ public class Trip {
             return "empty trip";
         String output=trip.get(0).name;
         for(int i=1;i<trip.size();i++)
-            output+=" \n-{"+trip.get(i-1).getDestination(trip.get(i).IndexX, trip.get(i).IndexY)+"}-> ("+trip.get(i).order+")  "+trip.get(i).name;
+            output+=" \n-{"+trip.get(i-1).getDestination(trip.get(i))+"}-> ("+trip.get(i).order+")  "+trip.get(i).name + " " + trip.get(i).stop.toString();
         output += "\nTOTAL DISTANCE: " + getTotalDistance();
         return output;
     }

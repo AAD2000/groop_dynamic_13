@@ -1,7 +1,8 @@
 import java.util.Random;
 
 /**
- * class of element
+ * Class of Element
+ * It can be start or end point of a passenger
  */
 class Element {
     /////////////////////////////////////////////////////////////////////////////
@@ -10,20 +11,18 @@ class Element {
     /**
      * Constructor with initialising all fields
      *
-     * @param indexX       X coord
-     * @param indexY       Y coord
+     * @param Stop       BusStop
      * @param Name         name+id of the client
      * @param IsStartpoint
      * @param Pair         second pair
      */
     public Element(
-            int indexX, int indexY,
+            BusStop Stop,
             String Name,
             boolean IsStartpoint,
             Element Pair
     ) {
-        IndexX = indexX;
-        IndexY = indexY;
+        stop = Stop;
         name = Name;
         isVisited = false;
 
@@ -44,9 +43,8 @@ class Element {
         }
     }
 
-    public Element(int indexX, int indexY, String Name, boolean IsStartpoint) {
-        IndexX = indexX;
-        IndexY = indexY;
+    public Element(BusStop Stop, String Name, boolean IsStartpoint) {
+        stop = Stop;
         name = Name;
         isStartpoint = IsStartpoint;
         pair = null;
@@ -56,9 +54,8 @@ class Element {
     /////////////////////////////////////////////////////////////////////////////
     /** fields **/
 
-    //coords of elem
-    int IndexX;
-    int IndexY;
+    // Current BusStop
+    BusStop stop;
 
     //Place in queue
     int order;
@@ -121,14 +118,6 @@ class Element {
     void setOrder(int ord){
         order = ord;
     }
-    /**
-     * property of destination from pair
-     *
-     * @return double destination
-     */
-    double getDestination() {
-        return getDestination(pair.IndexX, pair.IndexY);
-    }
 
     /**
      * property of destination from your elem
@@ -139,20 +128,13 @@ class Element {
         if (getIsInfinity())
             throw new IllegalArgumentException("start point haven't visited");
 
-        return getDestination(pair.IndexX, pair.IndexY);
+        return getDestination(pair.stop);
     }
 
-    /**
-     * property of destination from your coord
-     *
-     * @return
-     */
-    double getDestination(int pairIndexX, int pairIndexY) {
-        return Math.sqrt(
-                (pairIndexX - IndexX) * (pairIndexX - IndexX) +
-                        (pairIndexY - IndexY) * (pairIndexY - IndexY)
-        );
+    double getDestination(BusStop anotherStop){
+        return stop.getDistance(anotherStop);
     }
+
 
     /////////////////////////////////////////////////////////////////////////////
     /** methods **/
@@ -163,7 +145,7 @@ class Element {
 
     @Override
     public String toString() {
-        String output = "Name: " + name + "\n\tX: " + IndexX + "\n\tY: " + IndexY + "\n\t";
+        String output = "Name: " + name + "\n\tBusStop: " + stop.toString() + "\n\t";
         if (!isStartpoint)
             output += "Start point: ";
         else

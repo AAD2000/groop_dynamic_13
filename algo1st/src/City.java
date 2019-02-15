@@ -25,8 +25,14 @@ public class City {
      * @param s2
      * @param dist
      */
-    void makeRoad(BusStop s1, BusStop s2, double dist){
+    void addRoad(BusStop s1, BusStop s2, double dist){
         s1.addNeighbour(s2, dist);
         s2.addNeighbour(s1, dist);
+    }
+
+    void countDistances(){
+        for(BusStop s: stops){
+            s.countDistances(this);
+        }
     }
 }
