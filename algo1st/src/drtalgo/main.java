@@ -30,7 +30,7 @@ public class main {
 
         city.countDistances();
 
-        ArrayList<Element> graph = new ArrayList<Element>();
+        ArrayList<Element> graph = new ArrayList<>();
 
         Element s1= new Element(stop1, "s1", true);
         Element e1= new Element(stop2, "e1", false, s1);

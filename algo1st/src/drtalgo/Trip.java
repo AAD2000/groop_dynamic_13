@@ -8,7 +8,7 @@ import java.util.Random;
 public class Trip {
     //constructor
     public Trip(){
-        trip= new ArrayList<Element>();
+        trip= new ArrayList<>();
     }
 
     //trip is a list of a Elements which shows us a trip

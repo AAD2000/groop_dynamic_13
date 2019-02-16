@@ -4,12 +4,17 @@ import java.util.HashSet;
 public class City {
     // all stops of the city
     HashSet<BusStop> stops;
+    HashSet<Passenger> passengers;
+    HashSet<Vehicle> vehicles;
 
     /**
      * Constructor
      */
     public City(){
+
         stops = new HashSet<>();
+        passengers = new HashSet<>();
+        vehicles = new HashSet<>();
     }
 
     /**
@@ -19,6 +24,10 @@ public class City {
     void addStop(BusStop stop){
         stops.add(stop);
     }
+
+    void addPassenger(Passenger passenger) {passengers.add(passenger);}
+
+    void addVehicle(Vehicle vehicle) {vehicles.add(vehicle);}
 
     /**
      * Property of connecting 2 stops
