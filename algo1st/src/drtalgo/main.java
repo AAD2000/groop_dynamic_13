@@ -9,6 +9,9 @@ public class main {
     //starting programm
 
     public static void main(String[] args) {
+
+        // making City
+
         BusStop stop1 = new BusStop("Stop1");
         BusStop stop2 = new BusStop("Stop2");
         BusStop stop3 = new BusStop("Stop3");
@@ -30,7 +33,7 @@ public class main {
 
         city.countDistances();
 
-        ArrayList<Element> graph = new ArrayList<>();
+        ArrayList<Passenger> passengers = new ArrayList<>();
 
         Element s1= new Element(stop1, "s1", true);
         Element e1= new Element(stop2, "e1", false, s1);
@@ -44,24 +47,21 @@ public class main {
         Element s4= new Element(stop4, "s4", true);
         Element e4= new Element(stop5, "e4", false, s4);
 
-        graph.add(s1);
-        graph.add(e1);
+        Passenger pass1 = new Passenger(s1, e1, "Passenger1");
+        Passenger pass2 = new Passenger(s2, e2, "Passenger2");
+        Passenger pass3 = new Passenger(s3, e3, "Passenger3");
+        Passenger pass4 = new Passenger(s4, e4, "Passenger4");
 
-        graph.add(s2);
-        graph.add(e2);
-
-        graph.add(s3);
-        graph.add(e3);
-
-        graph.add(s4);
-        graph.add(e4);
-
-        for (Element e: graph) {
-            System.out.println(e.toString());
+        passengers.add(pass1);
+        passengers.add(pass2);
+        passengers.add(pass3);
+        passengers.add(pass4);
+        for (Passenger p: passengers) {
+            System.out.println(p.toString());
         }
 
-        Trip tr= new Trip();
-        tr.makeSimplestTrip(graph, stop1);
+        Trip tr = new Trip();
+        tr.makeSimplestTrip(passengers, stop1);
         System.out.println(tr.toString());
         tr.simulateAnnealing();
         System.out.println("\n***AFTER ALGORITHM***\n");

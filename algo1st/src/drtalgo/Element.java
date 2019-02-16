@@ -124,14 +124,14 @@ class Element {
      *
      * @return double destination
      */
-    double getDestination(Element pair) {
+    double getDistance(Element pair) {
         if (getIsInfinity())
             throw new IllegalArgumentException("start point haven't visited");
 
-        return getDestination(pair.stop);
+        return getDistance(pair.stop);
     }
 
-    double getDestination(BusStop anotherStop){
+    double getDistance(BusStop anotherStop){
         return stop.getDistance(anotherStop);
     }
 

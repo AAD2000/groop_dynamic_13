@@ -8,7 +8,7 @@ import java.util.Random;
 public class Trip {
     //constructor
     public Trip(){
-        trip= new ArrayList<>();
+        trip = new ArrayList<>();
     }
 
     //trip is a list of a Elements which shows us a trip
@@ -18,11 +18,16 @@ public class Trip {
 
     /***
      * Property of making start trip
-     * @param elements
+     * @param passengers
      * @param startStop
      */
-    void makeSimplestTrip(ArrayList<Element> elements, BusStop startStop)
+    void makeSimplestTrip(ArrayList<Passenger> passengers, BusStop startStop)
     {
+        ArrayList<Element> elements = new ArrayList<>();
+        for(Passenger passenger: passengers){
+            elements.add(passenger.startPoint);
+            elements.add(passenger.endPoint);
+        }
         Element location = new Element(startStop, "start point", true);
         trip.add(location);
         int used = 0;
@@ -95,9 +100,31 @@ public class Trip {
     double getTotalDistance(){
         double result = 0;
         for(int i=0; i<trip.size() - 1; i++) {
-            result += trip.get(i).getDestination(trip.get(i+1));
+            result += trip.get(i).getDistance(trip.get(i+1));
         }
         return result;
+    }
+
+    double getAverageWaitingTime(Vehicle car){
+        double wt = 0;
+        double n = 0;
+        for(int i=0; i<trip.size(); i++){
+            if(trip.get(i).pair != null && trip.get(i).isStartpoint){
+                wt += getWaitingTime(trip.get(i), car);
+            }
+        }
+        return wt/n;
+    }
+
+    double getWaitingTime(Element e, Vehicle car){
+        if(!e.isStartpoint){
+            return -1;
+        }
+        return e.getDistance(car.curstop)/50;
+    }
+
+    double getReward(){
+
     }
 
     @Override
@@ -106,7 +133,7 @@ public class Trip {
             return "empty trip";
         String output=trip.get(0).name;
         for(int i=1;i<trip.size();i++)
-            output+=" \n-{"+trip.get(i-1).getDestination(trip.get(i))+"}-> ("+trip.get(i).order+")  "+trip.get(i).name + " " + trip.get(i).stop.toString();
+            output+=" \n-{"+trip.get(i-1).getDistance(trip.get(i))+"}-> ("+trip.get(i).order+")  "+trip.get(i).name + " " + trip.get(i).stop.toString();
         output += "\nTOTAL DISTANCE: " + getTotalDistance();
         return output;
     }
