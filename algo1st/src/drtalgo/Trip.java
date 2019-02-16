@@ -1,3 +1,4 @@
+package drtalgo;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -68,22 +69,13 @@ public class Trip {
                 trip.get(it1).setOrder(it1);
                 trip.get(it2).setOrder(it2);
             }
-            else if(newDist == oldDist){
-                double flag = rand.nextDouble();
-                double prob = 0.5;
-                if (flag < prob){
-                    trip.get(it1).setOrder(it1);
-                    trip.get(it2).setOrder(it2);
-                }
-                else {
-                    trip.set(it1, el1);
-                    trip.set(it2, el2);
-                }
-            }
             else {
-                temperature *= 0.9;
+                if(newDist != oldDist)
+                    temperature *= 0.9;
                 double flag = rand.nextDouble();
                 double prob = Math.pow(Math.E,(oldDist - newDist)/temperature);
+                if(newDist == oldDist)
+                    prob = 0.5;
                 if (flag < prob){
                     trip.get(it1).setOrder(it1);
                     trip.get(it2).setOrder(it2);
