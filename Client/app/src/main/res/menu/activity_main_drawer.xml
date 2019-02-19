@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_person"
+            android:icon="@drawable/ic_person_outline_black_24dp"
+            android:title="Person" />
+
+        <item
+            android:id="@+id/nav_change_photo"
+            android:icon="@drawable/ic_history_black_24dp"
+            android:title="History" />
+
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ic_phone_black_24dp"
+            android:title="Feedback" />
+    </group>
+
+
+</menu>
