@@ -55,6 +55,20 @@ public class main {
         Passenger pass3 = new Passenger(s3, e3, "Passenger3");
         Passenger pass4 = new Passenger(s4, e4, "Passenger4");
 
+        city.addPassenger(pass1);
+        city.addPassenger(pass2);
+        city.addPassenger(pass3);
+        city.addPassenger(pass4);
+
+        s1.setPassenger(pass1);
+        s2.setPassenger(pass2);
+        s3.setPassenger(pass3);
+        s4.setPassenger(pass4);
+        e1.setPassenger(pass1);
+        e2.setPassenger(pass2);
+        e3.setPassenger(pass3);
+        e4.setPassenger(pass4);
+
         passengers.add(pass1);
         passengers.add(pass2);
         passengers.add(pass3);
@@ -63,7 +77,8 @@ public class main {
         passengers1.add(pass1);
         passengers1.add(pass2);
 
-        passengers2.add(pass2);
+        passengers2.add(pass1);
+        passengers2.add(pass3);
         passengers2.add(pass4);
 
         passengers3.add(pass2);
@@ -74,19 +89,20 @@ public class main {
             System.out.println(p.toString());
         }
 
+
+        System.out.println("******************");
         Vehicle vehicle1 = new Vehicle(city, 20, 0, stop1);
 
-        System.out.println(vehicle1.calculateProfit(passengers));
+        ArrayList<Passenger> arr1 = vehicle1.makeSetOfPassengers(0);
+        for (Passenger pass: arr1) {
+            System.out.println(pass.name);
+        }
+/*        System.out.println(vehicle1.calculateProfit(passengers));
         System.out.println(vehicle1.calculateProfit(passengers1));
         System.out.println(vehicle1.calculateProfit(passengers2));
-        System.out.println(vehicle1.calculateProfit(passengers3));
+        System.out.println(vehicle1.calculateProfit(passengers3));*/
 
-  /*      Trip tr = new Trip();
-        tr.makeSimplestTrip(passengers, stop1);
-        System.out.println(tr.toString());
-        tr.simulateAnnealing();
-        System.out.println("\n***AFTER ALGORITHM***\n");
-        System.out.println(tr.toString());*/
+
     }
 
 }

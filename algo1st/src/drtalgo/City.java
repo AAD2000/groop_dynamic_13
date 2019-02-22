@@ -1,20 +1,19 @@
 package drtalgo;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class City {
     // all stops of the city
-    HashSet<BusStop> stops;
-    HashSet<Passenger> passengers;
-    HashSet<Vehicle> vehicles;
+    ArrayList<BusStop> stops;
+    ArrayList<Passenger> passengers;
+    ArrayList<Vehicle> vehicles;
 
     /**
      * Constructor
      */
     public City(){
-
-        stops = new HashSet<>();
-        passengers = new HashSet<>();
-        vehicles = new HashSet<>();
+        stops = new ArrayList<>();
+        passengers = new ArrayList<>();
+        vehicles = new ArrayList<>();
     }
 
     /**

@@ -68,10 +68,12 @@ class Element {
     //pair of the element, if this is start point then pair is end point
     Element pair;
 
+    Passenger passenger;
+
     /////////////////////////////////////////////////////////////////////////////
     /** properties **/
 
-
+    void setPassenger(Passenger pass){passenger = pass;}
     /**
      * check if we can put this element in that place of done trip
      * @param ord

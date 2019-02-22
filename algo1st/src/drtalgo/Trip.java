@@ -1,5 +1,6 @@
 package drtalgo;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -23,7 +24,7 @@ public class Trip {
      * @param passengers
      * @param startStop
      */
-    void makeSimplestTrip(ArrayList<Passenger> passengers, BusStop startStop)
+    void makeSimplestTrip(List<Passenger> passengers, BusStop startStop)
     {
         ArrayList<Element> elements = new ArrayList<>();
         int visitedint = passengers.size()*2 + 1;
@@ -59,7 +60,8 @@ public class Trip {
         Random rand = new Random();
         int iteration = 0;
         double temperature = 1000;
-
+        double oldDist = getTotalDistance();
+        double newDist;
         while (iteration <= 1000){
             iteration ++;
 
@@ -71,13 +73,13 @@ public class Trip {
                 el1 = trip.get(it1);
                 el2 = trip.get(it2);
             }while (el1.getIsInfinity(it2) || el2.getIsInfinity(it1));
-            double oldDist = getTotalDistance();
             trip.set(it1, el2);
             trip.set(it2, el1);
-            double newDist = getTotalDistance();
+            newDist = getTotalDistance();
             if(newDist < oldDist){
                 trip.get(it1).setOrder(it1);
                 trip.get(it2).setOrder(it2);
+                oldDist = newDist;
             }
             else {
                 if(newDist != oldDist)
@@ -89,6 +91,7 @@ public class Trip {
                 if (flag < prob){
                     trip.get(it1).setOrder(it1);
                     trip.get(it2).setOrder(it2);
+                    oldDist = newDist;
                 }
                 else {
                     trip.set(it1, el1);
@@ -97,6 +100,11 @@ public class Trip {
             }
         }
         setPrefixDistances();
+    }
+
+    void createTrip(List<Passenger> passengers, BusStop startStop){
+        makeSimplestTrip(passengers, startStop);
+        simulateAnnealing();
     }
 
     void setPrefixDistances(){
@@ -137,7 +145,8 @@ public class Trip {
         double passenger_length = 0;
         for(int i=0; i<trip.size(); i++){
             if(trip.get(i).pair != null && trip.get(i).isStartpoint){
-                passenger_length += prefixDistances.get(trip.get(i).pair.order) - prefixDistances.get(i);
+                passenger_length += (prefixDistances.get(trip.get(i).pair.order) - prefixDistances.get(i))
+                        * trip.get(i).passenger.priority;
             }
         }
         return passenger_length - getTotalDistance();
