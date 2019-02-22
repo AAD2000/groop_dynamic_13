@@ -16,12 +16,16 @@ public class Vehicle {
         curstop = stop;
     }
 
+
+
     double calculateProfit(ArrayList<Passenger> passengers){
         Trip trip = new Trip();
         trip.makeSimplestTrip(passengers, curstop);
         trip.simulateAnnealing();
-        double wt = trip.getAverageWaitingTime(this);
+        double wt = trip.getAverageWaitingTime();
         double length = trip.getTotalDistance();
+        double reward = trip.getReward();
+        return ((reward * reward) - length)/wt;
     }
 
 }

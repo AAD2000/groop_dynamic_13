@@ -34,6 +34,9 @@ public class main {
         city.countDistances();
 
         ArrayList<Passenger> passengers = new ArrayList<>();
+        ArrayList<Passenger> passengers1 = new ArrayList<>();
+        ArrayList<Passenger> passengers2 = new ArrayList<>();
+        ArrayList<Passenger> passengers3 = new ArrayList<>();
 
         Element s1= new Element(stop1, "s1", true);
         Element e1= new Element(stop2, "e1", false, s1);
@@ -56,17 +59,34 @@ public class main {
         passengers.add(pass2);
         passengers.add(pass3);
         passengers.add(pass4);
+
+        passengers1.add(pass1);
+        passengers1.add(pass2);
+
+        passengers2.add(pass2);
+        passengers2.add(pass4);
+
+        passengers3.add(pass2);
+        passengers3.add(pass3);
+        passengers3.add(pass4);
+
         for (Passenger p: passengers) {
             System.out.println(p.toString());
         }
 
-        Trip tr = new Trip();
+        Vehicle vehicle1 = new Vehicle(city, 20, 0, stop1);
+
+        System.out.println(vehicle1.calculateProfit(passengers));
+        System.out.println(vehicle1.calculateProfit(passengers1));
+        System.out.println(vehicle1.calculateProfit(passengers2));
+        System.out.println(vehicle1.calculateProfit(passengers3));
+
+  /*      Trip tr = new Trip();
         tr.makeSimplestTrip(passengers, stop1);
         System.out.println(tr.toString());
         tr.simulateAnnealing();
         System.out.println("\n***AFTER ALGORITHM***\n");
-        System.out.println(tr.toString());
-
+        System.out.println(tr.toString());*/
     }
 
 }

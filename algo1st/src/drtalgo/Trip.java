@@ -9,10 +9,12 @@ public class Trip {
     //constructor
     public Trip(){
         trip = new ArrayList<>();
+        prefixDistances = new ArrayList<>();
     }
 
     //trip is a list of a Elements which shows us a trip
     ArrayList<Element> trip;
+    ArrayList<Integer> prefixDistances;
 
     // algo block!
 
@@ -24,9 +26,12 @@ public class Trip {
     void makeSimplestTrip(ArrayList<Passenger> passengers, BusStop startStop)
     {
         ArrayList<Element> elements = new ArrayList<>();
+        int visitedint = passengers.size()*2 + 1;
         for(Passenger passenger: passengers){
             elements.add(passenger.startPoint);
+            passenger.startPoint.order = visitedint;
             elements.add(passenger.endPoint);
+            passenger.endPoint.order = visitedint;
         }
         Element location = new Element(startStop, "start point", true);
         trip.add(location);
@@ -35,11 +40,10 @@ public class Trip {
         while(used != elements.size()){
             for(int i=0; i<elements.size(); i++) {
                 Element temp = elements.get(i);
-                if(!temp.getIsInfinity() && !temp.isVisited){
+                if(!temp.getIsInfinity(trip.size()) && temp.order == visitedint){
+                    temp.setOrder(trip.size());
                     trip.add(temp);
-                    temp.setOrder(trip.size()-1);
                     used++;
-                    temp.setVisitedTrue();
                     break;
                 }
             }
@@ -48,6 +52,7 @@ public class Trip {
                 throw new IllegalArgumentException("wrong clients!");
             }
         }
+
     }
 
     void simulateAnnealing(){
@@ -91,6 +96,16 @@ public class Trip {
                 }
             }
         }
+        setPrefixDistances();
+    }
+
+    void setPrefixDistances(){
+        int dist = 0;
+        prefixDistances.add(0);
+        for (int i=1; i<trip.size(); i++){
+            dist += trip.get(i).getDistance(trip.get(i-1));
+            prefixDistances.add(dist);
+        }
     }
 
     /**
@@ -105,26 +120,27 @@ public class Trip {
         return result;
     }
 
-    double getAverageWaitingTime(Vehicle car){
+    double getAverageWaitingTime(){
         double wt = 0;
         double n = 0;
         for(int i=0; i<trip.size(); i++){
             if(trip.get(i).pair != null && trip.get(i).isStartpoint){
-                wt += getWaitingTime(trip.get(i), car);
+                wt += prefixDistances.get(i);
+                n++;
             }
         }
         return wt/n;
     }
 
-    double getWaitingTime(Element e, Vehicle car){
-        if(!e.isStartpoint){
-            return -1;
-        }
-        return e.getDistance(car.curstop)/50;
-    }
 
     double getReward(){
-
+        double passenger_length = 0;
+        for(int i=0; i<trip.size(); i++){
+            if(trip.get(i).pair != null && trip.get(i).isStartpoint){
+                passenger_length += prefixDistances.get(trip.get(i).pair.order) - prefixDistances.get(i);
+            }
+        }
+        return passenger_length - getTotalDistance();
     }
 
     @Override
@@ -132,9 +148,13 @@ public class Trip {
         if (trip.isEmpty())
             return "empty trip";
         String output=trip.get(0).name;
-        for(int i=1;i<trip.size();i++)
-            output+=" \n-{"+trip.get(i-1).getDistance(trip.get(i))+"}-> ("+trip.get(i).order+")  "+trip.get(i).name + " " + trip.get(i).stop.toString();
-        output += "\nTOTAL DISTANCE: " + getTotalDistance();
+        for(int i=1;i<trip.size();i++) {
+            output += " \n-{" + trip.get(i - 1).getDistance(trip.get(i)) + "}-> (" + trip.get(i).order + ")  " + trip.get(i).name + " " + trip.get(i).stop.toString();
+            if(prefixDistances.size() != 0){
+                output += " " + prefixDistances.get(i);
+            }
+        }
+         output += "\nTOTAL DISTANCE: " + getTotalDistance();
         return output;
     }
 }
