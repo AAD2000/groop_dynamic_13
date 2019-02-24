@@ -93,10 +93,10 @@ public class main {
         System.out.println("******************");
         Vehicle vehicle1 = new Vehicle(city, 20, 0, stop1);
 
-        ArrayList<Passenger> arr1 = vehicle1.makeSetOfPassengers(0);
+       /* ArrayList<Passenger> arr1 = vehicle1.makeSetOfPassengers(0);
         for (Passenger pass: arr1) {
             System.out.println(pass.name);
-        }
+        }*/
 /*        System.out.println(vehicle1.calculateProfit(passengers));
         System.out.println(vehicle1.calculateProfit(passengers1));
         System.out.println(vehicle1.calculateProfit(passengers2));

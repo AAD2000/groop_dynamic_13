@@ -1,7 +1,8 @@
 package drtalgo;
 
+import javafx.util.Pair;
+
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -27,7 +28,7 @@ public class Vehicle {
         return reward - 1.5 * wt;
     }
 
-    ArrayList<Passenger> makeSetOfPassengers(int start){
+    Pair<Double, ArrayList<Passenger>> makeSetOfPassengers(int start){
         ArrayList<Boolean> visited = new ArrayList<>();
         for(int i=0; i<city.passengers.size(); i++){
             visited.add(false);
@@ -103,6 +104,6 @@ public class Vehicle {
             }
             added.clear();
         }
-        return result;
+        return new Pair<>(oldProfit, result);
     }
 }

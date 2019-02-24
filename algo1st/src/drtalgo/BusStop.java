@@ -81,6 +81,10 @@ public class BusStop {
         return distances.get(anotherStop);
     }
 
+    Double getDistance(Element e){
+        return distances.get(e.stop);
+    }
+
     @Override
     public String toString() {
         return name;
