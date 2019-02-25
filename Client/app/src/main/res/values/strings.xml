@@ -3,5 +3,9 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_maps">Map</string>
-
+    <string name="personalData">Персональные данные</string>
+    <string name="save">Сохранить</string>
+    <string name="phone">Телефон</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
 </resources>
