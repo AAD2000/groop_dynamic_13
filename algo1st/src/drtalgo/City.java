@@ -4,6 +4,7 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class City {
     // all stops of the city
@@ -70,26 +71,97 @@ public class City {
 
     BetTree makeBetTree(){
         HashMap<Vehicle, Pair<Double,ArrayList<Passenger>>> bets = makeBets();
-        LinkedList<BetTree> leafs = new LinkedList<>();
-        BetTree root = new BetTree(null, null);
-        leafs.add(root);
+
+        LinkedList<BetTree> leaves = new LinkedList<>();
+        ArrayList<BetTree> bets_to_remove = new ArrayList<>();
+        BetTree root = new BetTree(null, null, null);
+        leaves.add(root);
         for (Passenger passenger: passengers) {
-            for(Vehicle vehicle: vehicles){
-                if(bets.get(vehicle).getValue().contains(passenger)){
-                    for (BetTree leaf:leafs){
-                        if(!leaf.isBetsCross(bets.get(vehicle).getValue())){
-                            leaf.addChildren(new BetTree(bets.get(vehicle), leaf));
+            for (Vehicle vehicle : vehicles) {
+                if (bets.get(vehicle).getValue().contains(passenger)) {
+                    for (BetTree leaf : leaves) {
+                        if (!leaf.isBetsCross(bets.get(vehicle).getValue())) {
+                            leaf.addChildren(new BetTree(bets.get(vehicle), leaf, vehicle));
                         }
                     }
                 }
             }
-            for (BetTree leaf: leafs){
-                if(leaf.isUsed()){
-                    leafs.remove(leaf);
+            for (BetTree leaf : leaves) {
+                if (!leaf.containsPassengerInSubtree(passenger)) {
+                    leaf.addChildren(new BetTree(passenger, leaf));
                 }
             }
+
+            
+            for (BetTree leaf: leaves){
+                if(leaf.isUsed()){
+                   bets_to_remove.add(leaf);
+                }
+            }
+            for (BetTree leaf: bets_to_remove){
+                leaves.remove(leaf);
+                leaves.addAll(leaf.getChildren());
+            }
+            bets_to_remove.clear();
         }
         return root;
+    }
+
+    Pair<Double,ArrayList<Vehicle>> chooseWorkingVehicles(){
+        BetTree root = makeBetTree();
+        ArrayList<Vehicle> result = new ArrayList<>();
+        double resulting_profit = Double.MIN_VALUE;
+        double temp_profit = 0;
+
+        Stack<BetTree> stack = new Stack<>();
+        BetTree result_leaf = null;
+        stack.push(root);
+        while(!stack.empty()){
+            BetTree temp = stack.peek();
+            if(temp.getVehicle() != null && !temp.isVisited()){
+                temp_profit += temp.getProfit();
+            }
+            temp.setVisitedTrue();
+
+            if(temp.getChildren().isEmpty()){
+                if(temp_profit > resulting_profit){
+                    resulting_profit = temp_profit;
+                    result_leaf = temp;
+                }
+                stack.pop();
+                if(temp.getVehicle() != null){
+                    temp_profit -= temp.getProfit();
+                }
+            }
+            else{
+                int k = 0;
+                for (BetTree child: temp.getChildren()){
+                    if(!child.isVisited()){
+                        stack.push(child);
+                        break;
+                    }
+                    k++;
+                }
+                if(k==temp.getChildren().size()){
+                    stack.pop();
+                    if(temp.getVehicle() != null){
+                        temp_profit -= temp.getProfit();
+                    }
+                }
+            }
+
+        }
+        while (result_leaf.getParent() != null){
+            if(result_leaf.getVehicle() != null) {
+                result.add(result_leaf.getVehicle());
+                result_leaf.getVehicle().addPassengers(result_leaf.getPassengers());
+            }
+            else{
+                result_leaf.getNotUsedPassenger().increasePriority(1.1);
+            }
+            result_leaf = result_leaf.getParent();
+        }
+        return new Pair<>(resulting_profit, result);
     }
 
 

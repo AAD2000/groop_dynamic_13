@@ -1,4 +1,6 @@
 package drtalgo;
+import javafx.util.Pair;
+
 import java.util.ArrayList;
 
  /**
@@ -34,17 +36,14 @@ public class main {
         city.countDistances();
 
         ArrayList<Passenger> passengers = new ArrayList<>();
-        ArrayList<Passenger> passengers1 = new ArrayList<>();
-        ArrayList<Passenger> passengers2 = new ArrayList<>();
-        ArrayList<Passenger> passengers3 = new ArrayList<>();
 
         Element s1= new Element(stop1, "s1", true);
         Element e1= new Element(stop2, "e1", false, s1);
 
-        Element s2= new Element(stop3, "s2", true);
-        Element e2= new Element(stop5, "e2", false, s2);
+        Element s2= new Element(stop1, "s2", true);
+        Element e2= new Element(stop2, "e2", false, s2);
 
-        Element s3= new Element(stop1, "s3", true);
+        Element s3= new Element(stop4, "s3", true);
         Element e3= new Element(stop5, "e3", false, s3);
 
         Element s4= new Element(stop4, "s4", true);
@@ -74,33 +73,38 @@ public class main {
         passengers.add(pass3);
         passengers.add(pass4);
 
-        passengers1.add(pass1);
-        passengers1.add(pass2);
 
-        passengers2.add(pass1);
-        passengers2.add(pass3);
-        passengers2.add(pass4);
+        Vehicle vehicle1 = new Vehicle(city, 20, 1, stop1);
+        Vehicle vehicle2 = new Vehicle(city, 20, 2, stop4);
 
-        passengers3.add(pass2);
-        passengers3.add(pass3);
-        passengers3.add(pass4);
+        city.addVehicle(vehicle1);
+        city.addVehicle(vehicle2);
 
-        for (Passenger p: passengers) {
-            System.out.println(p.toString());
+/*        passengers.remove(0);
+        System.out.println(vehicle2.calculateProfit(passengers));
+        passengers.add(pass1);
+        passengers.remove(0);
+        System.out.println(vehicle2.calculateProfit(passengers));
+        passengers.remove(2);
+        System.out.println(vehicle2.calculateProfit(passengers));*/
+
+        Pair<Double,ArrayList<Vehicle>> result = city.chooseWorkingVehicles();
+
+        System.out.println("PROFIT: "+ result.getKey());
+        for(Vehicle vehicle: city.vehicles){
+            System.out.println(vehicle.toString());
         }
 
 
-        System.out.println("******************");
-        Vehicle vehicle1 = new Vehicle(city, 20, 0, stop1);
 
-       /* ArrayList<Passenger> arr1 = vehicle1.makeSetOfPassengers(0);
-        for (Passenger pass: arr1) {
-            System.out.println(pass.name);
+/*
+        for (Passenger p: passengers) {
+            System.out.println(p.toString());
         }*/
-/*        System.out.println(vehicle1.calculateProfit(passengers));
-        System.out.println(vehicle1.calculateProfit(passengers1));
-        System.out.println(vehicle1.calculateProfit(passengers2));
-        System.out.println(vehicle1.calculateProfit(passengers3));*/
+
+
+        System.out.println("******************");
+
 
 
     }

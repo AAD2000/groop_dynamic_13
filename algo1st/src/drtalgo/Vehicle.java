@@ -2,32 +2,49 @@ package drtalgo;
 
 import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Vehicle {
 
-    City city;
-    int capacity;
-    int id;
+    private City city;
+    private int capacity;
+    private int id;
     BusStop curstop;
+    private LinkedList<Passenger> passengers;
+    private Trip trip;
 
     public Vehicle(City ct, int cap, int ind, BusStop stop){
         city = ct;
         capacity = cap;
         id = ind;
         curstop = stop;
+        passengers = new LinkedList<>();
+        trip = new Trip();
     }
 
-    double calculateProfit(List<Passenger> passengers){
+    void addPassengers(List<Passenger> pass_collection){
+        for(Passenger pass: pass_collection){
+            if(!passengers.contains(pass)){
+                passengers.add(pass);
+            }
+        }
+        setTrip();
+    }
+
+    void setTrip(){
+        trip.createTrip(passengers, curstop);
+    }
+
+    Double calculateProfit(List<Passenger> passengers){
         Trip trip = new Trip();
         trip.createTrip(passengers, curstop);
         double wt = trip.getAverageWaitingTime();
-        double reward = trip.getReward();
-        return reward - 1.5 * wt;
+        double reward = trip.getReward()- 1.5 * wt;
+        return reward;
     }
 
+
+    // TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     Pair<Double, ArrayList<Passenger>> makeSetOfPassengers(int start){
         ArrayList<Boolean> visited = new ArrayList<>();
         for(int i=0; i<city.passengers.size(); i++){
@@ -39,8 +56,11 @@ public class Vehicle {
         result.add(city.passengers.get(start));
         int iteration = 0;
         double temperature = 100;
+
         Random rand = new Random();
+
         double oldProfit = calculateProfit(result);
+
         double newProfit;
         double rem_or_add;
         int how_many_add = 0;
@@ -105,5 +125,15 @@ public class Vehicle {
             added.clear();
         }
         return new Pair<>(oldProfit, result);
+    }
+
+    @Override
+    public String toString() {
+        String output = "Vehicle" + id + "\nPassengers:\n";
+        for(Passenger pass: passengers){
+            output+=pass.name + "\n";
+        }
+        //output += "Trip:\n" + trip.toString();
+        return output;
     }
 }

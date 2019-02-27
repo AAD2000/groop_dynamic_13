@@ -12,11 +12,11 @@ public class Passenger {
         name = Name;
     }
 
-    void setPriority(double p){priority = p;}
+    void increasePriority(double p){priority *= p;}
 
     @Override
     public String toString() {
-        String output = "Passenger: " + name + "\n" + startPoint.toString() + "\n" + endPoint.toString();
+        String output = "Passenger: " + name;//+ "\n" + startPoint.toString() + "\n" + endPoint.toString();
         return output;
     }
 

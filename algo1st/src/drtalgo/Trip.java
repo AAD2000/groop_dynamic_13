@@ -145,7 +145,7 @@ public class Trip {
         double passenger_length = 0;
         for(int i=0; i<trip.size(); i++){
             if(trip.get(i).pair != null && trip.get(i).isStartpoint){
-                passenger_length += (prefixDistances.get(trip.get(i).pair.order) - prefixDistances.get(i))
+                passenger_length += (trip.get(i).getDistance(trip.get(i).pair))
                         * trip.get(i).passenger.priority;
             }
         }
