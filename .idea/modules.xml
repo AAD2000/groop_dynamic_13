@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ClientPart/ClientPart.iml" filepath="$PROJECT_DIR$/ClientPart/ClientPart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClientPart/ClientPart.iml" filepath="$PROJECT_DIR$/ClientPart/ClientPart.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/HSE-Group-dynamic.iml" filepath="$PROJECT_DIR$/.idea/HSE-Group-dynamic.iml" />
     </modules>
   </component>
