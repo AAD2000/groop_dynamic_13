@@ -1,4 +1,4 @@
-import java.util.Random;
+package drtalgo;
 
 /**
  * Class of Element
@@ -24,7 +24,6 @@ class Element {
     ) {
         stop = Stop;
         name = Name;
-        isVisited = false;
 
         if (IsStartpoint != Pair.isStartpoint)
             isStartpoint = IsStartpoint;
@@ -48,7 +47,6 @@ class Element {
         name = Name;
         isStartpoint = IsStartpoint;
         pair = null;
-        isVisited = false;
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -63,8 +61,6 @@ class Element {
     //name+id of elem
     String name;
 
-    //check is this visited
-    boolean isVisited;
 
     //check is this startpoint
     boolean isStartpoint;
@@ -72,25 +68,12 @@ class Element {
     //pair of the element, if this is start point then pair is end point
     Element pair;
 
+    Passenger passenger;
+
     /////////////////////////////////////////////////////////////////////////////
     /** properties **/
 
-    /**
-     * Property for checking, could we count destination
-     *
-     * @return true if we haven't visited start point
-     */
-    boolean getIsInfinity() {
-        if (isStartpoint)
-            return false;
-        else {
-            if (pair.isVisited)
-                return false;
-            else
-                return true;
-        }
-    }
-
+    void setPassenger(Passenger pass){passenger = pass;}
     /**
      * check if we can put this element in that place of done trip
      * @param ord
@@ -124,24 +107,17 @@ class Element {
      *
      * @return double destination
      */
-    double getDestination(Element pair) {
-        if (getIsInfinity())
-            throw new IllegalArgumentException("start point haven't visited");
-
-        return getDestination(pair.stop);
+    double getDistance(Element pair) {
+        return getDistance(pair.stop);
     }
 
-    double getDestination(BusStop anotherStop){
+    double getDistance(BusStop anotherStop){
         return stop.getDistance(anotherStop);
     }
 
 
     /////////////////////////////////////////////////////////////////////////////
     /** methods **/
-
-    void setVisitedTrue() {
-        isVisited = true;
-    }
 
     @Override
     public String toString() {

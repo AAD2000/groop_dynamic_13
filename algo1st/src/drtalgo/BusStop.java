@@ -1,5 +1,5 @@
+package drtalgo;
 import java.util.HashMap;
-import java.util.Map;
 
 public class BusStop {
     /** fields **/
@@ -79,6 +79,10 @@ public class BusStop {
      */
     Double getDistance(BusStop anotherStop){
         return distances.get(anotherStop);
+    }
+
+    Double getDistance(Element e){
+        return distances.get(e.stop);
     }
 
     @Override
