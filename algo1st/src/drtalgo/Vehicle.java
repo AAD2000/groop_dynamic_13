@@ -6,60 +6,117 @@ import java.util.*;
 
 public class Vehicle {
 
+    /** fields **/
+    // city where vehicle is
     private City city;
+    // the amount of passengers that vehicle can accommodate
     private int capacity;
+    // id number of vehicle
     private int id;
-    BusStop curstop;
+    // Current Bus Stop of the vehicle
+    private BusStop curstop;
+    // passengers that are waiting for this vehicle or are in this vehicle
     private LinkedList<Passenger> passengers;
+    // fiels for algo
+    private LinkedList<Passenger> possible_passengers;
+    // current trip of the vehicle
     private Trip trip;
+    // trip for algo
+    private Trip trip_back;
 
+    /** constructor **/
+    /**
+     * Constructor
+     * @param ct city
+     * @param cap capacity
+     * @param ind id of the vehicle
+     * @param stop bus stop
+     */
     public Vehicle(City ct, int cap, int ind, BusStop stop){
         city = ct;
         capacity = cap;
         id = ind;
         curstop = stop;
         passengers = new LinkedList<>();
+        possible_passengers = new LinkedList<>();
         trip = new Trip();
+        trip_back = new Trip();
     }
 
+    /** properties **/
+    BusStop getCurstop() {return curstop;}
+
+    /**
+     * Property of adding new passengers to this vehicle
+     * @param pass_collection
+     */
     void addPassengers(List<Passenger> pass_collection){
+
         for(Passenger pass: pass_collection){
             if(!passengers.contains(pass)){
                 passengers.add(pass);
+                city.pickUpPassenger(pass);
             }
         }
+
         setTrip();
     }
 
-    void setTrip(){
+    /**
+     * Joining current and possible passengers
+     * @param ex_passengers new possible passengers
+     * @return
+     */
+    private LinkedList<Passenger> getAllPossiblePassengers(LinkedList<Passenger> ex_passengers){
+        possible_passengers.clear();
+        possible_passengers.addAll(passengers);
+        possible_passengers.addAll(ex_passengers);
+        return possible_passengers;
+    }
+
+    /**
+     * Property of making trip
+     */
+    private void setTrip(){
         trip.createTrip(passengers, curstop);
     }
 
-    Double calculateProfit(List<Passenger> passengers){
-        Trip trip = new Trip();
-        trip.createTrip(passengers, curstop);
-        double wt = trip.getAverageWaitingTime();
-        double reward = trip.getReward()- 1.5 * wt;
+    /**
+     * Calculating profit trip on set of passengers
+     * @param passengers set of passengers
+     * @return
+     */
+    private Double calculateProfit(List<Passenger> passengers){
+        trip_back.clearTrip();
+        trip_back.createTrip(passengers, curstop);
+        double wt = trip_back.getAverageWaitingTime();
+        double reward = trip_back.getReward()- 1.5 * wt;
+        if(!trip_back.checkCapacity(capacity)){
+            reward = Double.MIN_VALUE;
+        }
         return reward;
     }
 
-
-    // TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    Pair<Double, ArrayList<Passenger>> makeSetOfPassengers(int start){
+    /**
+     * Method of making set of passenger that is the most profitable
+     * @param start
+     * @return
+     */
+    Pair<Double, LinkedList<Passenger>> makeSetOfPassengers(int start){
         ArrayList<Boolean> visited = new ArrayList<>();
-        for(int i=0; i<city.passengers.size(); i++){
+        for(int i=0; i<city.getNTPassengers().size(); i++){
             visited.add(false);
         }
         visited.set(start, true);
-        ArrayList<Passenger> result = new ArrayList<>();
+        LinkedList<Passenger> result = new LinkedList<>();
         ArrayList<Integer> added = new ArrayList<>();
-        result.add(city.passengers.get(start));
+        result.add(city.getNTPassengers().get(start));
         int iteration = 0;
         double temperature = 100;
 
         Random rand = new Random();
 
-        double oldProfit = calculateProfit(result);
+        double oldProfit = calculateProfit(getAllPossiblePassengers(result));
 
         double newProfit;
         double rem_or_add;
@@ -72,12 +129,12 @@ public class Vehicle {
             rem_or_add = rand.nextDouble();
             Passenger tempPass = null;
             if(rem_or_add < prob_of_add || n == 1) {
-                how_many_add = rand.nextInt(city.passengers.size()- n);
+                how_many_add = rand.nextInt(city.getNTPassengers().size()- n);
                 for(int i=0; i<how_many_add; i++) {
                     do {
-                        it = rand.nextInt(city.passengers.size());
+                        it = rand.nextInt(city.getNTPassengers().size());
                     } while (visited.get(it));
-                    result.add(city.passengers.get(it));
+                    result.add(city.getNTPassengers().get(it));
                     visited.set(it, true);
                     added.add(it);
                 }
@@ -88,7 +145,7 @@ public class Vehicle {
                 tempPass = result.get(it);
                 result.remove(it);
             }
-            newProfit = calculateProfit(result);
+            newProfit = calculateProfit(getAllPossiblePassengers(result));
             double flag = rand.nextDouble();
             double prob = Math.pow(Math.E,(newProfit - oldProfit)/temperature);
             if((oldProfit < newProfit) || (flag < prob)){
@@ -96,8 +153,8 @@ public class Vehicle {
                     n += how_many_add;
                 }
                 else {
-                    for(int i=0; i<city.passengers.size(); i++){
-                        if(city.passengers.get(i) == tempPass){
+                    for(int i=0; i<city.getNTPassengers().size(); i++){
+                        if(city.getNTPassengers().get(i) == tempPass){
                             visited.set(i, false);
                             break;
                         }
@@ -131,9 +188,9 @@ public class Vehicle {
     public String toString() {
         String output = "Vehicle" + id + "\nPassengers:\n";
         for(Passenger pass: passengers){
-            output+=pass.name + "\n";
+            output+= "\t" + pass.name + "\n";
         }
-        //output += "Trip:\n" + trip.toString();
+        output += "Trip:\n" + trip.toString();
         return output;
     }
 }

@@ -7,31 +7,45 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 public class City {
+
+    /** fields **/
     // all stops of the city
-    ArrayList<BusStop> stops;
-    ArrayList<Passenger> passengers;
-    ArrayList<Vehicle> vehicles;
+    private ArrayList<BusStop> stops;
+    // all passengers thar were delivered or delivering at the moment
+    private ArrayList<Passenger> used_passengers;
+    // all passengers that are waiting for vehicle
+    private ArrayList<Passenger> nottaken_passengers;
+    // all vehicles of the city
+    private ArrayList<Vehicle> vehicles;
 
     /**
      * Constructor
      */
     public City(){
         stops = new ArrayList<>();
-        passengers = new ArrayList<>();
+        used_passengers = new ArrayList<>();
+        nottaken_passengers = new ArrayList<>();
         vehicles = new ArrayList<>();
     }
 
-    /**
-     * Property of adding stop to the city
-     * @param stop
-     */
+    /** properties**/
+
+    ArrayList<BusStop> getStops(){return stops;}
+    ArrayList<Passenger> getNTPassengers(){return nottaken_passengers;}
+    ArrayList<Vehicle> getVehicles() {return vehicles;}
+
     void addStop(BusStop stop){
         stops.add(stop);
     }
-
-    void addPassenger(Passenger passenger) {passengers.add(passenger);}
-
+    void addPassenger(Passenger passenger) {nottaken_passengers.add(passenger);}
     void addVehicle(Vehicle vehicle) {vehicles.add(vehicle);}
+
+    boolean isEmpty(){
+        if(vehicles.isEmpty() && stops.isEmpty()){
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Property of connecting 2 stops
@@ -44,21 +58,37 @@ public class City {
         s2.addNeighbour(s1, dist);
     }
 
+    /**
+     * Setting one passenger to used
+     * @param pass passenger to change
+     */
+    void pickUpPassenger(Passenger pass){
+        nottaken_passengers.remove(pass);
+        used_passengers.add(pass);
+    }
+
+    /**
+     * Precondition of distances
+     */
     void countDistances(){
         for(BusStop s: stops){
             s.countDistances(this);
         }
     }
 
-    HashMap<Vehicle, Pair<Double,ArrayList<Passenger>>> makeBets(){
-        HashMap<Vehicle, Pair<Double,ArrayList<Passenger>>> bets = new HashMap<>();
+    /**
+     * Method of making bets of evety vehicle
+     * @return Map with bets from every vehicle and its profit
+     */
+    private HashMap<Vehicle, Pair<Double,LinkedList<Passenger>>> makeBets(){
+        HashMap<Vehicle, Pair<Double,LinkedList<Passenger>>> bets = new HashMap<>();
         double min_dist;
         int index;
         for(Vehicle vehicle: vehicles){
             min_dist = Double.MAX_VALUE;
             index = -1;
-            for(int i=0; i<passengers.size(); i++){
-                double t=vehicle.curstop.getDistance(passengers.get(i).startPoint);
+            for(int i=0; i<nottaken_passengers.size(); i++){
+                double t=vehicle.getCurstop().getDistance(nottaken_passengers.get(i).startPoint);
                 if(t < min_dist){
                     min_dist = t;
                     index = i;
@@ -69,14 +99,18 @@ public class City {
         return bets;
     }
 
-    BetTree makeBetTree(){
-        HashMap<Vehicle, Pair<Double,ArrayList<Passenger>>> bets = makeBets();
+    /***
+     * Method of creating bet tree
+     * @return root of the tree
+     */
+    private BetTree makeBetTree(){
+        HashMap<Vehicle, Pair<Double,LinkedList<Passenger>>> bets = makeBets();
 
         LinkedList<BetTree> leaves = new LinkedList<>();
         ArrayList<BetTree> bets_to_remove = new ArrayList<>();
         BetTree root = new BetTree(null, null, null);
         leaves.add(root);
-        for (Passenger passenger: passengers) {
+        for (Passenger passenger: nottaken_passengers) {
             for (Vehicle vehicle : vehicles) {
                 if (bets.get(vehicle).getValue().contains(passenger)) {
                     for (BetTree leaf : leaves) {
@@ -107,7 +141,14 @@ public class City {
         return root;
     }
 
+    /**
+     * Choosing winners from bet tree
+     * @return general profit and vehicles who won the auction
+     */
     Pair<Double,ArrayList<Vehicle>> chooseWorkingVehicles(){
+        if(isEmpty()){
+            return new Pair<>((double) 0, null);
+        }
         BetTree root = makeBetTree();
         ArrayList<Vehicle> result = new ArrayList<>();
         double resulting_profit = Double.MIN_VALUE;
