@@ -21,9 +21,6 @@ public class ServerInformation implements Serializable {
     private String serverMessage;
     private boolean wrongName;
 
-    public void setEntered(boolean entered) {
-        this.entered = entered;
-    }
 
     public boolean isEntered() {
         return entered;
@@ -33,12 +30,7 @@ public class ServerInformation implements Serializable {
         return serverMessage;
     }
 
-
-    public void setWrongName(boolean wrongName) {
-        this.wrongName = wrongName;
-    }
-
-    boolean isWrongName() {
+    public boolean isWrongName() {
         return wrongName;
     }
 

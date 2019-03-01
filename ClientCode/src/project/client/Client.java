@@ -17,13 +17,15 @@ import java.math.BigInteger;
 import java.net.InetSocketAddress;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
 
 public class Client extends AbstractActor {
 
     final InetSocketAddress remote;
     private boolean connected = false;
+    static private boolean isLogged = false;
 
-    public static Props props(InetSocketAddress remote) {
+    private static Props props(InetSocketAddress remote) {
         return Props.create(Client.class, remote);
     }
 
@@ -33,28 +35,29 @@ public class Client extends AbstractActor {
         final ActorRef tcp = Tcp.get(getContext().getSystem()).manager();
         tcp.tell(TcpMessage.connect(remote), getSelf());
     }
+
     static class UserInformation {
 
         final String userName;
         final String password;
         final String fullname;
-        final String email;
+        final String phoneNumber;
         final char group;
         final char register;
 
         private UserInformation
-                (String userName, String password, String fullname, String email, char group, char register) {
+                (String userName, String password, String fullname, String phoneNumber, char group, char register) {
             this.userName = userName;
             this.password = password;
             this.group = group;
             this.register = register;
             this.fullname = fullname;
-            this.email = email;
+            this.phoneNumber = phoneNumber;
         }
 
         ByteString getInformation() {
             return ByteString.fromString(String.format("%s %s %s %s %s %s",
-                    userName, md5Custom(password), fullname, email, group, register));
+                    userName, md5Custom(password), fullname, phoneNumber, group, register));
         }
 
         private static String md5Custom(String st) {
@@ -81,11 +84,10 @@ public class Client extends AbstractActor {
         }
 
         static UserInformation createInstance
-                (String userName, String password, String fullname, String email, char group, char register) {
-            return new UserInformation(userName, password, fullname, email, group,register);
+                (String userName, String password, String fullname, String phoneNumber, char group, char register) {
+            return new UserInformation(userName, password, fullname, phoneNumber, group,register);
         }
     }
-
 
     @Override
     public Receive createReceive() {
@@ -144,9 +146,14 @@ public class Client extends AbstractActor {
                     }
 
                     System.out.println(message.getServerMessage());
-                    if(!message.isEntered()) return;
-                    //TODO Обработка сообщений от сервера
-                    //TODO Тестить на другом компухтере
+                    if(message.isWrongName() || !message.isEntered()) {
+                        return;
+                    }
+
+                    isLogged = true;
+
+
+
                 })
                 .build();
     }
@@ -154,15 +161,28 @@ public class Client extends AbstractActor {
     public static void main(String[] args) throws InterruptedException {
         ActorSystem clientSystem = ActorSystem.create("ClientSystem");
 
+        Scanner in = new Scanner(System.in);
+
         ActorRef client = clientSystem.actorOf(Client.props(
                 InetSocketAddress.createUnresolved("localhost", 8080)));
 
         Thread.sleep(1000);
 
-            client.tell(
+            /*client.tell(
                     UserInformation.createInstance("Tohenz", "44234123","Kalinin&Anton",
-                            "aikalinin@edu.hse.ru", 'u', 'n'),
-                    ActorRef.noSender());
+                            "8999213123", 'u', 'y'),
+                    ActorRef.noSender());*/
+            while(!isLogged) {
+                // Регистрация и вход
+                // Ничего другого умного не придумал, так как Actor максимально закрыт
+                // TODO: Лёха, здесь регистрация и вход!!!
+                client.tell(
+                        UserInformation.createInstance(in.nextLine(), "44234123","",
+                                "", 'u', 'n'),
+                        ActorRef.noSender());
+            }
+
+
 
 
 
