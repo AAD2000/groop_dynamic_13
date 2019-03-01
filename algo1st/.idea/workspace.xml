@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ae53bd6-3624-4186-b632-e822d56c493a" name="Default Changelist" comment="">
+    <list default="true" id="9ae53bd6-3624-4186-b632-e822d56c493a" name="Default Changelist" comment="CityFactory">
+      <change afterPath="$PROJECT_DIR$/src/drtalgo/CityFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/drtalgo/BetTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drtalgo/BetTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/drtalgo/BusStop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drtalgo/BusStop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/drtalgo/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drtalgo/City.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/drtalgo/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drtalgo/Passenger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/drtalgo/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drtalgo/Trip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/drtalgo/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drtalgo/Vehicle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/drtalgo/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drtalgo/main.java" afterDir="false" />
     </list>
@@ -40,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/src/drtalgo/Element.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1617">
-              <caret line="77" column="36" selection-start-line="77" selection-start-column="36" selection-end-line="77" selection-end-column="36" />
+              <caret line="77" column="48" selection-start-line="77" selection-start-column="48" selection-end-line="77" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -48,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/drtalgo/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="90" selection-start-line="90" selection-end-line="95" selection-end-column="9" />
+            <state relative-caret-position="189">
+              <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,12 +57,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/drtalgo/CityFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
+              <folding>
+                <element signature="e#102#103#0" expanded="true" />
+                <element signature="e#134#135#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/drtalgo/City.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="120" column="45" selection-start-line="120" selection-start-column="45" selection-end-line="120" selection-end-column="45" />
+            <state relative-caret-position="918">
+              <caret line="157" selection-start-line="157" selection-end-line="157" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#744#745#0" expanded="true" />
+                <element signature="e#775#776#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,12 +86,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/drtalgo/BetTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="76" column="23" selection-start-line="76" selection-start-column="23" selection-end-line="76" selection-end-column="23" />
+            <state>
+              <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1614#1615#0" expanded="true" />
-                <element signature="e#1671#1672#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -86,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/drtalgo/Vehicle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="131" column="54" selection-start-line="131" selection-start-column="54" selection-end-line="131" selection-end-column="54" />
+            <state relative-caret-position="504">
+              <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/drtalgo/BusStop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1701">
-              <caret line="84" column="35" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+            <state relative-caret-position="252">
+              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
               <folding>
                 <element signature="e#2239#2240#0" expanded="true" />
                 <element signature="e#2288#2289#0" expanded="true" />
@@ -111,7 +123,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/drtalgo/Trip.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="3087">
               <caret line="147" column="77" selection-start-line="147" selection-start-column="77" selection-end-line="147" selection-end-column="77" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -123,8 +135,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/drtalgo/Passenger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+            <state relative-caret-position="63">
+              <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -145,19 +157,27 @@
       <find>ArrayList</find>
       <find>make</find>
       <find>makes</find>
-      <find>\n</find>
       <find>eq</find>
       <find>leafs</find>
+      <find>\n</find>
+      <find>set</find>
+      <find>city.passengers</find>
     </findStrings>
     <replaceStrings>
       <replace>Distance</replace>
       <replace>ArrayList</replace>
       <replace>LinkedList</replace>
       <replace>leaves</replace>
+      <replace>city.getPassengers()</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="origin" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -168,13 +188,14 @@
         <option value="$PROJECT_DIR$/src/BusStop.java" />
         <option value="$PROJECT_DIR$/src/Trip.java" />
         <option value="$PROJECT_DIR$/src/drtalgo/Element.java" />
-        <option value="$PROJECT_DIR$/src/drtalgo/BusStop.java" />
         <option value="$PROJECT_DIR$/src/drtalgo/BetTree.java" />
         <option value="$PROJECT_DIR$/src/drtalgo/Passenger.java" />
         <option value="$PROJECT_DIR$/src/drtalgo/Trip.java" />
-        <option value="$PROJECT_DIR$/src/drtalgo/main.java" />
+        <option value="$PROJECT_DIR$/src/drtalgo/BusStop.java" />
         <option value="$PROJECT_DIR$/src/drtalgo/Vehicle.java" />
         <option value="$PROJECT_DIR$/src/drtalgo/City.java" />
+        <option value="$PROJECT_DIR$/src/drtalgo/main.java" />
+        <option value="$PROJECT_DIR$/src/drtalgo/CityFactory.java" />
       </list>
     </option>
   </component>
@@ -185,9 +206,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="978" />
-    <option name="height" value="1039" />
+    <option name="x" value="-10" />
+    <option name="width" value="979" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -195,7 +216,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -219,12 +239,13 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551040336649" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551442637066" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -295,7 +316,8 @@
       <workItem from="1550917702811" duration="1314000" />
       <workItem from="1551008638598" duration="18726000" />
       <workItem from="1551205983825" duration="9223000" />
-      <workItem from="1551296965806" duration="10820000" />
+      <workItem from="1551296965806" duration="12290000" />
+      <workItem from="1551438107199" duration="3975000" />
     </task>
     <task id="LOCAL-00001" summary="git commit">
       <created>1549823497208</created>
@@ -367,11 +389,18 @@
       <option name="project" value="LOCAL" />
       <updated>1551035705664</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Algo is ready">
+      <created>1551309033038</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1551309033038</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121328000" />
+    <option name="totallyTimeSpent" value="126773000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -386,7 +415,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.27176222" visible="true" weight="0.19597316" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.27176222" visible="true" weight="0.19865772" />
       <window_info id="Structure" order="1" sideWeight="0.7282378" side_tool="true" weight="0.18255034" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -395,8 +424,8 @@
       <window_info id="Favorites" order="6" side_tool="true" weight="0.3295302" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49261746" weight="0.37818697" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4966443" visible="true" weight="0.5084986" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49261746" visible="true" weight="0.46458924" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4966443" weight="0.5084986" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49932885" weight="0.3286119" />
@@ -510,40 +539,23 @@
     <MESSAGE value="Profit function" />
     <MESSAGE value="bet creator" />
     <MESSAGE value="BetTree" />
-    <option name="LAST_COMMIT_MESSAGE" value="BetTree" />
+    <MESSAGE value="Algo is ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="Algo is ready" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/drtalgo/City.java</url>
-          <line>110</line>
+          <url>file://$PROJECT_DIR$/src/drtalgo/main.java</url>
+          <line>19</line>
           <properties />
-          <option name="timeStamp" value="31" />
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/drtalgo/City.java</url>
-          <line>111</line>
+          <url>file://$PROJECT_DIR$/src/drtalgo/main.java</url>
+          <line>23</line>
           <properties />
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/drtalgo/City.java</url>
-          <line>106</line>
-          <properties />
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/drtalgo/City.java</url>
-          <line>163</line>
-          <properties />
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/drtalgo/City.java</url>
-          <line>153</line>
-          <properties />
-          <option name="timeStamp" value="41" />
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -575,13 +587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/drtalgo/Element.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1617">
-          <caret line="77" column="36" selection-start-line="77" selection-start-column="36" selection-end-line="77" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/javafx-src.zip!/javafx/util/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="107">
@@ -589,10 +594,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/drtalgo/BetTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/drtalgo/Vehicle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/drtalgo/BusStop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1701">
-          <caret line="84" column="35" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+        <state relative-caret-position="252">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
           <folding>
             <element signature="e#2239#2240#0" expanded="true" />
             <element signature="e#2288#2289#0" expanded="true" />
@@ -602,25 +627,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/drtalgo/Passenger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+        <state relative-caret-position="63">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/drtalgo/Element.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1617">
+          <caret line="77" column="48" selection-start-line="77" selection-start-column="48" selection-end-line="77" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/drtalgo/Trip.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="3087">
           <caret line="147" column="77" selection-start-line="147" selection-start-column="77" selection-end-line="147" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/drtalgo/Vehicle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="131" column="54" selection-start-line="131" selection-start-column="54" selection-end-line="131" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -629,32 +651,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/drtalgo/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="90" selection-start-line="90" selection-end-line="95" selection-end-column="9" />
+        <state relative-caret-position="189">
+          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/drtalgo/BetTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="76" column="23" selection-start-line="76" selection-start-column="23" selection-end-line="76" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1614#1615#0" expanded="true" />
-            <element signature="e#1671#1672#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/drtalgo/City.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="120" column="45" selection-start-line="120" selection-start-column="45" selection-end-line="120" selection-end-column="45" />
+        <state relative-caret-position="918">
+          <caret line="157" selection-start-line="157" selection-end-line="157" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#744#745#0" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/drtalgo/CityFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
+          <folding>
+            <element signature="e#102#103#0" expanded="true" />
+            <element signature="e#134#135#0" expanded="true" />
           </folding>
         </state>
       </provider>
