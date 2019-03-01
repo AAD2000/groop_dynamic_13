@@ -8,38 +8,34 @@ import akka.io.TcpMessage;
 import akka.util.ByteString;
 import com.server.ServerInformation;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.InetSocketAddress;
 import java.util.Scanner;
 
-public class Passenger extends Client {
-
+public class Driver extends Client {
     private static Props props(InetSocketAddress remote) {
         return Props.create(Passenger.class, remote);
     }
 
-    public Passenger(InetSocketAddress remote) {
+    public Driver(InetSocketAddress remote) {
         super(remote);
     }
 
-    private static class PassengerMessage implements Message{
-        private String from;
-        private String to;
+    static class DriverInformation implements Message {
+        final int capacity;
+        final int stopId;
 
-        private PassengerMessage(String from, String to) {
-            this.from = from;
-            this.to = to;
+        private DriverInformation(int capacity, int stopId) {
+            this.capacity = capacity;
+            this.stopId = stopId;
         }
 
-        static PassengerMessage createInstance(String from, String to) {
-            return new PassengerMessage(from, to);
+        static DriverInformation createInstance(int capacity, int stopId) {
+            return new DriverInformation(capacity,stopId);
         }
 
         @Override
         public ByteString getInformation() {
-            return ByteString.fromString(String.format("%s %s", from, to));
+            return ByteString.fromString(String.format("%d %d", capacity, stopId));
         }
     }
 
@@ -49,9 +45,6 @@ public class Passenger extends Client {
                 .match(UserInformation.class, info -> {
                     connection.tell(TcpMessage.write(info.getInformation()),
                             getSelf());
-                })
-                .match(PassengerMessage.class, msg -> {
-                    connection.tell(TcpMessage.write(msg.getInformation()), getSelf());
                 })
                 .match(ByteString.class, msg -> {
                     connection.tell(TcpMessage.write(msg), getSelf());
@@ -72,7 +65,7 @@ public class Passenger extends Client {
                 .match(Tcp.Received.class, msg -> {
 
                     ServerInformation message = getInformation(msg);
-                    if(message == null) return;
+                    if (message == null) return;
 
                     if (!isLogged) {
                         registration(message);
@@ -90,7 +83,7 @@ public class Passenger extends Client {
         ActorSystem clientSystem = ActorSystem.create("ClientSystem");
         Scanner in = new Scanner(System.in);
 
-        ActorRef client = clientSystem.actorOf(Passenger.props(
+        ActorRef client = clientSystem.actorOf(Driver.props(
                 InetSocketAddress.createUnresolved("localhost", 8080)));
 
         Thread.sleep(1000);
@@ -109,9 +102,9 @@ public class Passenger extends Client {
 
         while(true) {
             System.out.println("Enter start stop and end stop");
-            String from = in.nextLine();
-            String to = in.nextLine();
-            client.tell(PassengerMessage.createInstance(from, to),
+            int capacity = in.nextInt();
+            int stopId = in.nextInt();
+            client.tell(DriverInformation.createInstance(capacity, stopId),
                     ActorRef.noSender());
         }
     }

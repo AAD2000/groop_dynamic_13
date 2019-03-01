@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0e7faae-c2e5-4ceb-b818-54047d0f90f4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ClientCode/src/project/client/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DriverCode/src/project/client/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/HSE-Group-dynamic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HSE-Group-dynamic.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientCode/src/com/server/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientCode/src/project/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClientCode/src/project/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClientCode/src/project/client/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClientCode/src/project/client/Passenger.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/ClientPart/out/" />
@@ -18,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ClientCode/src/project/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="874">
-              <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="49" selection-end-column="9" />
+            <state relative-caret-position="858">
+              <caret line="52" column="9" lean-forward="true" selection-start-line="52" selection-start-column="9" selection-end-line="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -28,10 +31,26 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DriverCode/src/project/client/Driver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="777">
+              <caret line="106" column="74" selection-start-line="106" selection-start-column="74" selection-end-line="106" selection-end-column="74" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#588#589#0" expanded="true" />
+                <element signature="e#617#618#0" expanded="true" />
+                <element signature="e#988#989#0" expanded="true" />
+                <element signature="e#1023#1024#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ClientCode/src/project/client/Passenger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="123" column="31" selection-start-line="123" selection-start-column="31" selection-end-line="123" selection-end-column="31" />
+            <state relative-caret-position="292">
+              <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#592#593#0" expanded="true" />
@@ -42,10 +61,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ClientCode/src/com/server/ServerInformation.java">
+        <entry file="file://$PROJECT_DIR$/ClientCode/src/project/client/Message.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="95">
-              <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ClientCode/src/com/server/ServerInformation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,8 +106,10 @@
       <list>
         <option value="$PROJECT_DIR$/ClientPart/src/project/client/Client.java" />
         <option value="$PROJECT_DIR$/ClientCode/src/com/server/ServerInformation.java" />
-        <option value="$PROJECT_DIR$/ClientCode/src/project/client/Client.java" />
+        <option value="$PROJECT_DIR$/ClientCode/src/project/client/Message.java" />
         <option value="$PROJECT_DIR$/ClientCode/src/project/client/Passenger.java" />
+        <option value="$PROJECT_DIR$/DriverCode/src/project/client/Driver.java" />
+        <option value="$PROJECT_DIR$/ClientCode/src/project/client/Client.java" />
       </list>
     </option>
   </component>
@@ -93,8 +123,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -122,6 +152,24 @@
             </path>
             <path>
               <item name="HSE-Group-dynamic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HSE-Group-dynamic" type="462c0819:PsiDirectoryNode" />
+              <item name="DriverCode" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HSE-Group-dynamic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HSE-Group-dynamic" type="462c0819:PsiDirectoryNode" />
+              <item name="DriverCode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HSE-Group-dynamic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HSE-Group-dynamic" type="462c0819:PsiDirectoryNode" />
+              <item name="DriverCode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HSE-Group-dynamic" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -138,7 +186,7 @@
     <property name="Repository.Attach.Sources" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551405902929" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551483585638" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -146,6 +194,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.customizations" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="project.client" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ClientCode" />
     </key>
@@ -194,7 +245,9 @@
       <updated>1551382398589</updated>
       <workItem from="1551382399890" duration="8762000" />
       <workItem from="1551449130525" duration="1768000" />
-      <workItem from="1551452422805" duration="1177000" />
+      <workItem from="1551452422805" duration="2645000" />
+      <workItem from="1551456551714" duration="318000" />
+      <workItem from="1551468666944" duration="10957000" />
     </task>
     <task id="LOCAL-00001" summary="Another one">
       <created>1551382603004</created>
@@ -238,16 +291,23 @@
       <option name="project" value="LOCAL" />
       <updated>1551449170645</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Beta-version">
+      <created>1551454134102</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1551454134102</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11707000" />
+    <option name="totallyTimeSpent" value="24450000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25579977" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26007327" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -257,7 +317,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.498779" visible="true" weight="0.32959184" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3995381" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3989796" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -342,38 +402,70 @@
     <MESSAGE value="Added entering" />
     <MESSAGE value="Улучшил архитектуру кода" />
     <MESSAGE value="Обработка сообщений после регистрации" />
-    <option name="LAST_COMMIT_MESSAGE" value="Обработка сообщений после регистрации" />
+    <MESSAGE value="Beta-version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Beta-version" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ClientCode/src/com/server/Message.java" />
-    <entry file="file://$PROJECT_DIR$/ClientCode/src/project/client/Client.java">
+    <entry file="file://$PROJECT_DIR$/ClientCode/src/com/server/ServerInformation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="49" selection-end-column="9" />
+        <state relative-caret-position="209">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ClientCode/src/com/server/ServerInformation.java">
+    <entry file="file://$PROJECT_DIR$/DriverCode/src/project/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home/src.zip!/java/io/PrintStream.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="317">
+          <caret line="803" column="16" selection-start-line="803" selection-start-column="16" selection-end-line="803" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ClientCode/src/project/client/Passenger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="123" column="31" selection-start-line="123" selection-start-column="31" selection-end-line="123" selection-end-column="31" />
+        <state relative-caret-position="292">
+          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#592#593#0" expanded="true" />
             <element signature="e#621#622#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ClientCode/src/project/client/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ClientCode/src/project/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="858">
+          <caret line="52" column="9" lean-forward="true" selection-start-line="52" selection-start-column="9" selection-end-line="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DriverCode/src/project/client/Driver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="106" column="74" selection-start-line="106" selection-start-column="74" selection-end-line="106" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#588#589#0" expanded="true" />
+            <element signature="e#617#618#0" expanded="true" />
+            <element signature="e#988#989#0" expanded="true" />
+            <element signature="e#1023#1024#0" expanded="true" />
           </folding>
         </state>
       </provider>
