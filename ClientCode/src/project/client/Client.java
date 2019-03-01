@@ -3,58 +3,50 @@ package project.client;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import akka.actor.Props;
 import akka.io.Tcp;
 import akka.io.TcpMessage;
 import akka.util.ByteString;
-import com.server.ServerInformation;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.math.BigInteger;
 import java.net.InetSocketAddress;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Client extends AbstractActor {
+public abstract class Client extends AbstractActor {
 
-    final InetSocketAddress remote;
-    private boolean connected = false;
-
-    public static Props props(InetSocketAddress remote) {
-        return Props.create(Client.class, remote);
-    }
+    private final InetSocketAddress remote;
+    protected boolean connected = false;
+    static boolean isLogged = false;
 
     // Подключаемся к серверу
-    public Client(InetSocketAddress remote) {
+    Client(InetSocketAddress remote) {
         this.remote = remote;
         final ActorRef tcp = Tcp.get(getContext().getSystem()).manager();
         tcp.tell(TcpMessage.connect(remote), getSelf());
     }
+
     static class UserInformation {
 
         final String userName;
         final String password;
         final String fullname;
-        final String email;
+        final String phoneNumber;
         final char group;
         final char register;
 
         private UserInformation
-                (String userName, String password, String fullname, String email, char group, char register) {
+                (String userName, String password, String fullname, String phoneNumber, char group, char register) {
             this.userName = userName;
             this.password = password;
             this.group = group;
             this.register = register;
             this.fullname = fullname;
-            this.email = email;
+            this.phoneNumber = phoneNumber;
         }
 
         ByteString getInformation() {
             return ByteString.fromString(String.format("%s %s %s %s %s %s",
-                    userName, md5Custom(password), fullname, email, group, register));
+                    userName, md5Custom(password), fullname, phoneNumber, group, register));
         }
 
         private static String md5Custom(String st) {
@@ -81,11 +73,10 @@ public class Client extends AbstractActor {
         }
 
         static UserInformation createInstance
-                (String userName, String password, String fullname, String email, char group, char register) {
-            return new UserInformation(userName, password, fullname, email, group,register);
+                (String userName, String password, String fullname, String phoneNumber, char group, char register) {
+            return new UserInformation(userName, password, fullname, phoneNumber, group,register);
         }
     }
-
 
     @Override
     public Receive createReceive() {
@@ -101,72 +92,6 @@ public class Client extends AbstractActor {
                 .build();
     }
 
-    private Receive connected(final ActorRef connection) {
-        // System.out.println(connection);
-        return receiveBuilder()
-                .match(UserInformation.class, info -> {
-                        connection.tell(TcpMessage.write(info.getInformation()),
-                                getSelf());
-                })
-                .match(ByteString.class, msg -> {
-                    connection.tell(TcpMessage.write(msg), getSelf());
-                })
-                .match(Tcp.CommandFailed.class, msg -> {
-                    System.out.println("Command Failed");
-                })
-                .matchEquals("close",msg -> {
-                    connection.tell(TcpMessage.close(), getSelf());
-                })
-                .match(TcpMessage.class, msg -> {
-                    getSender().tell(msg, getSelf());
-                })
-                .match(Tcp.ConnectionClosed.class, msg -> {
-                    getContext().stop(getSelf());
-                    System.out.println("Server Closed");
-                })
-                .match(Tcp.Received.class, msg -> {
-                    byte[] byteArray = msg.data().toArray();
-
-                    ServerInformation message;
-                    // Дессериализация класса
-                    try {
-                        ObjectInputStream objectInputStream = new ObjectInputStream(
-                                new ByteArrayInputStream(byteArray));
-
-                        message = (ServerInformation) objectInputStream.readObject();
-                        objectInputStream.close();
-                    } catch (ClassCastException ex) {
-                        System.out.println("Wrong message from server");
-                        return;
-                    } catch (IOException ex) {
-                        System.out.println("Wrong class");
-                        return;
-                    }
-
-                    System.out.println(message.getServerMessage());
-                    if(!message.isEntered()) return;
-                    //TODO Обработка сообщений от сервера
-                    //TODO Тестить на другом компухтере
-                })
-                .build();
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        ActorSystem clientSystem = ActorSystem.create("ClientSystem");
-
-        ActorRef client = clientSystem.actorOf(Client.props(
-                InetSocketAddress.createUnresolved("localhost", 8080)));
-
-        Thread.sleep(1000);
-
-            client.tell(
-                    UserInformation.createInstance("Tohenz", "44234123","Kalinin&Anton",
-                            "aikalinin@edu.hse.ru", 'u', 'n'),
-                    ActorRef.noSender());
-
-
-
-    }
-
+    abstract Receive connected(final ActorRef connection);
 }
 
