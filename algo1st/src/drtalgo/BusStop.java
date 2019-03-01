@@ -6,11 +6,11 @@ public class BusStop {
     String name;
 
     // all neighboring stops
-    HashMap <BusStop, Double> neighbours;
+    private HashMap <BusStop, Double> neighbours;
     // distance to all stops
-    HashMap <BusStop, Double> distances;
+    private HashMap <BusStop, Double> distances;
     // how to get to any stop
-    HashMap <BusStop, BusStop> path;
+    private HashMap <BusStop, BusStop> path;
 
     /***
      * Constructor with initialising all fields
@@ -40,7 +40,7 @@ public class BusStop {
     void countDistances(City city){
         HashMap<BusStop, Boolean> visited = new HashMap<>();
         int visitedStops = 0;
-        for (BusStop s:city.stops) {
+        for (BusStop s:city.getStops()) {
             distances.put(s, Double.MAX_VALUE);
             path.put(s, null);
             visited.put(s, false);
