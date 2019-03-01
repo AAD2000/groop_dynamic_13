@@ -11,6 +11,7 @@ public class Vehicle {
     private int id;
     private BusStop curstop;
     private LinkedList<Passenger> passengers;
+    private LinkedList<Passenger> possible_passengers;
     private Trip trip;
 
     public Vehicle(City ct, int cap, int ind, BusStop stop){
@@ -19,18 +20,29 @@ public class Vehicle {
         id = ind;
         curstop = stop;
         passengers = new LinkedList<>();
+        possible_passengers = new LinkedList<>();
         trip = new Trip();
     }
 
     BusStop getCurstop() {return curstop;}
 
     void addPassengers(List<Passenger> pass_collection){
+
         for(Passenger pass: pass_collection){
             if(!passengers.contains(pass)){
                 passengers.add(pass);
+                city.pickUpPassenger(pass);
             }
         }
+
         setTrip();
+    }
+
+    LinkedList<Passenger> getAllPossiblePassengers(LinkedList<Passenger> ex_passengers){
+        possible_passengers.clear();
+        possible_passengers.addAll(passengers);
+        possible_passengers.addAll(ex_passengers);
+        return possible_passengers;
     }
 
     void setTrip(){
@@ -42,25 +54,28 @@ public class Vehicle {
         trip.createTrip(passengers, curstop);
         double wt = trip.getAverageWaitingTime();
         double reward = trip.getReward()- 1.5 * wt;
+        if(!trip.checkCapacity(capacity)){
+            reward = Double.MIN_VALUE;
+        }
         return reward;
     }
 
 
-    Pair<Double, ArrayList<Passenger>> makeSetOfPassengers(int start){
+    Pair<Double, LinkedList<Passenger>> makeSetOfPassengers(int start){
         ArrayList<Boolean> visited = new ArrayList<>();
-        for(int i=0; i<city.getPassengers().size(); i++){
+        for(int i=0; i<city.getNTPassengers().size(); i++){
             visited.add(false);
         }
         visited.set(start, true);
-        ArrayList<Passenger> result = new ArrayList<>();
+        LinkedList<Passenger> result = new LinkedList<>();
         ArrayList<Integer> added = new ArrayList<>();
-        result.add(city.getPassengers().get(start));
+        result.add(city.getNTPassengers().get(start));
         int iteration = 0;
         double temperature = 100;
 
         Random rand = new Random();
 
-        double oldProfit = calculateProfit(result);
+        double oldProfit = calculateProfit(getAllPossiblePassengers(result));
 
         double newProfit;
         double rem_or_add;
@@ -73,12 +88,12 @@ public class Vehicle {
             rem_or_add = rand.nextDouble();
             Passenger tempPass = null;
             if(rem_or_add < prob_of_add || n == 1) {
-                how_many_add = rand.nextInt(city.getPassengers().size()- n);
+                how_many_add = rand.nextInt(city.getNTPassengers().size()- n);
                 for(int i=0; i<how_many_add; i++) {
                     do {
-                        it = rand.nextInt(city.getPassengers().size());
+                        it = rand.nextInt(city.getNTPassengers().size());
                     } while (visited.get(it));
-                    result.add(city.getPassengers().get(it));
+                    result.add(city.getNTPassengers().get(it));
                     visited.set(it, true);
                     added.add(it);
                 }
@@ -89,7 +104,7 @@ public class Vehicle {
                 tempPass = result.get(it);
                 result.remove(it);
             }
-            newProfit = calculateProfit(result);
+            newProfit = calculateProfit(getAllPossiblePassengers(result));
             double flag = rand.nextDouble();
             double prob = Math.pow(Math.E,(newProfit - oldProfit)/temperature);
             if((oldProfit < newProfit) || (flag < prob)){
@@ -97,8 +112,8 @@ public class Vehicle {
                     n += how_many_add;
                 }
                 else {
-                    for(int i=0; i<city.getPassengers().size(); i++){
-                        if(city.getPassengers().get(i) == tempPass){
+                    for(int i=0; i<city.getNTPassengers().size(); i++){
+                        if(city.getNTPassengers().get(i) == tempPass){
                             visited.set(i, false);
                             break;
                         }
