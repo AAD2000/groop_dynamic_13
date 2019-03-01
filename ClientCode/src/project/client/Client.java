@@ -3,34 +3,23 @@ package project.client;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import akka.actor.Props;
 import akka.io.Tcp;
 import akka.io.TcpMessage;
 import akka.util.ByteString;
-import com.server.ServerInformation;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.math.BigInteger;
 import java.net.InetSocketAddress;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Scanner;
 
-public class Client extends AbstractActor {
+public abstract class Client extends AbstractActor {
 
-    final InetSocketAddress remote;
-    private boolean connected = false;
-    static private boolean isLogged = false;
-
-    private static Props props(InetSocketAddress remote) {
-        return Props.create(Client.class, remote);
-    }
+    private final InetSocketAddress remote;
+    protected boolean connected = false;
+    static boolean isLogged = false;
 
     // Подключаемся к серверу
-    public Client(InetSocketAddress remote) {
+    Client(InetSocketAddress remote) {
         this.remote = remote;
         final ActorRef tcp = Tcp.get(getContext().getSystem()).manager();
         tcp.tell(TcpMessage.connect(remote), getSelf());
@@ -103,90 +92,6 @@ public class Client extends AbstractActor {
                 .build();
     }
 
-    private Receive connected(final ActorRef connection) {
-        // System.out.println(connection);
-        return receiveBuilder()
-                .match(UserInformation.class, info -> {
-                        connection.tell(TcpMessage.write(info.getInformation()),
-                                getSelf());
-                })
-                .match(ByteString.class, msg -> {
-                    connection.tell(TcpMessage.write(msg), getSelf());
-                })
-                .match(Tcp.CommandFailed.class, msg -> {
-                    System.out.println("Command Failed");
-                })
-                .matchEquals("close",msg -> {
-                    connection.tell(TcpMessage.close(), getSelf());
-                })
-                .match(TcpMessage.class, msg -> {
-                    getSender().tell(msg, getSelf());
-                })
-                .match(Tcp.ConnectionClosed.class, msg -> {
-                    getContext().stop(getSelf());
-                    System.out.println("Server Closed");
-                })
-                .match(Tcp.Received.class, msg -> {
-                    byte[] byteArray = msg.data().toArray();
-
-                    ServerInformation message;
-                    // Дессериализация класса
-                    try {
-                        ObjectInputStream objectInputStream = new ObjectInputStream(
-                                new ByteArrayInputStream(byteArray));
-
-                        message = (ServerInformation) objectInputStream.readObject();
-                        objectInputStream.close();
-                    } catch (ClassCastException ex) {
-                        System.out.println("Wrong message from server");
-                        return;
-                    } catch (IOException ex) {
-                        System.out.println("Wrong class");
-                        return;
-                    }
-
-                    System.out.println(message.getServerMessage());
-                    if(message.isWrongName() || !message.isEntered()) {
-                        return;
-                    }
-
-                    isLogged = true;
-
-
-
-                })
-                .build();
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        ActorSystem clientSystem = ActorSystem.create("ClientSystem");
-
-        Scanner in = new Scanner(System.in);
-
-        ActorRef client = clientSystem.actorOf(Client.props(
-                InetSocketAddress.createUnresolved("localhost", 8080)));
-
-        Thread.sleep(1000);
-
-            /*client.tell(
-                    UserInformation.createInstance("Tohenz", "44234123","Kalinin&Anton",
-                            "8999213123", 'u', 'y'),
-                    ActorRef.noSender());*/
-            while(!isLogged) {
-                // Регистрация и вход
-                // Ничего другого умного не придумал, так как Actor максимально закрыт
-                // TODO: Лёха, здесь регистрация и вход!!!
-                client.tell(
-                        UserInformation.createInstance(in.nextLine(), "44234123","",
-                                "", 'u', 'n'),
-                        ActorRef.noSender());
-            }
-
-
-
-
-
-    }
-
+    abstract Receive connected(final ActorRef connection);
 }
 
