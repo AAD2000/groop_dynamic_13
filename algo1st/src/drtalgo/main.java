@@ -23,6 +23,7 @@ public class main {
 
         Pair<Double,ArrayList<Vehicle>> result = city.chooseWorkingVehicles();
 
+
         System.out.println("PROFIT: "+ result.getKey());
         for(Vehicle vehicle: city.getVehicles()){
             System.out.println(vehicle.toString());

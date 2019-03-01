@@ -3,10 +3,11 @@ package drtalgo;
 import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 public class BetTree {
 
-    private Pair<Double,ArrayList<Passenger>> bet;
+    private Pair<Double,LinkedList<Passenger>> bet;
     private ArrayList<BetTree> children;
     private BetTree parent;
     private HashSet<Passenger> usedPassengers;
@@ -14,7 +15,7 @@ public class BetTree {
     private boolean visited;
     private Vehicle vehicle;
 
-    public BetTree(Pair<Double,ArrayList<Passenger>> Bet, BetTree Parent, Vehicle veh){
+    public BetTree(Pair<Double,LinkedList<Passenger>> Bet, BetTree Parent, Vehicle veh){
         bet = Bet;
         children = new ArrayList<>();
         parent = Parent;
@@ -31,7 +32,7 @@ public class BetTree {
     }
 
     public BetTree(Passenger passenger, BetTree Parent){
-        bet = new Pair<>(Double.valueOf(0), new ArrayList<>());
+        bet = new Pair<>(Double.valueOf(0), new LinkedList<>());
         bet.getValue().add(passenger);
         children = new ArrayList<>();
         parent = Parent;
@@ -46,7 +47,7 @@ public class BetTree {
 
     }
 
-    boolean isBetsCross(ArrayList<Passenger> another_bet){
+    boolean isBetsCross(LinkedList<Passenger> another_bet){
         for(Passenger pass1: usedPassengers){
             for(Passenger pass2: another_bet){
                 if(pass1 == pass2){
@@ -79,7 +80,7 @@ public class BetTree {
     boolean containsPassengerInSubtree(Passenger passenger){
         return usedPassengers.contains(passenger);
     }
-    ArrayList<Passenger> getPassengers(){ return bet.getValue(); }
+    LinkedList<Passenger> getPassengers(){ return bet.getValue(); }
     Passenger getNotUsedPassenger() {return bet.getValue().get(0);}
 
     boolean isUsed(){

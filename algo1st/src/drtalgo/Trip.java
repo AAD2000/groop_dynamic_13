@@ -152,6 +152,19 @@ public class Trip {
         return passenger_length - getTotalDistance();
     }
 
+    boolean checkCapacity(int capacity){
+        int pass_in = 0;
+        for(int i=0; i<trip.size(); i++){
+            if(trip.get(i).pair != null && trip.get(i).isStartpoint){
+                pass_in ++;
+                if(pass_in > capacity){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     @Override
     public String toString(){
         if (trip.isEmpty())
