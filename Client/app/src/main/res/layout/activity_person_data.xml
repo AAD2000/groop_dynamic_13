@@ -28,24 +28,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="667dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/ic_button"
-        android:text="@string/save"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -53,10 +35,10 @@
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="2dp"
-        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -73,12 +55,12 @@
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/phone"
-                android:textSize="16sp"
-                android:textColor="@color/colorWhite"
+                android:paddingStart="10dp"
                 android:paddingLeft="10dp"
-                tools:ignore="RtlSymmetry"
-                android:paddingStart="10dp" />
+                android:text="@string/phone"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                tools:ignore="RtlSymmetry" />
 
             <EditText
                 android:id="@+id/phone_edit"
@@ -95,12 +77,12 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/name"
-                android:textSize="16sp"
-                android:textColor="@color/colorWhite"
+                android:paddingStart="10dp"
                 android:paddingLeft="10dp"
-                tools:ignore="RtlSymmetry"
-                android:paddingStart="10dp" />
+                android:text="@string/name"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                tools:ignore="RtlSymmetry" />
 
             <EditText
                 android:id="@+id/name_edit"
@@ -118,12 +100,12 @@
                 android:id="@+id/surname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/surname"
-                android:textSize="16sp"
-                android:textColor="@color/colorWhite"
+                android:paddingStart="10dp"
                 android:paddingLeft="10dp"
-                tools:ignore="RtlSymmetry"
-                android:paddingStart="10dp" />
+                android:text="@string/surname"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                tools:ignore="RtlSymmetry" />
 
             <EditText
                 android:id="@+id/surname_edit"
@@ -136,10 +118,24 @@
                 android:text="Surtest"
                 android:textColor="@color/colorPrimaryDark" />
 
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/ic_button"
+                android:text="@string/save"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
         </LinearLayout>
     </ScrollView>
-
-
 
 
 </android.support.constraint.ConstraintLayout>

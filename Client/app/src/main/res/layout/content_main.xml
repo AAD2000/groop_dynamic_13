@@ -18,14 +18,41 @@
         tools:context=".MapsActivity">
 
         <Button
-            android:id="@+id/markerBtn"
+            android:id="@+id/order_button"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_margin="10dp"
+            android:background="@drawable/ic_button"
+            android:text="Заказать"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <LinearLayout
+            android:id="@+id/buttons_to_order"
+            android:layout_gravity="center|bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:text="Demo Button"
-            android:padding="10dp"
-            android:layout_marginTop="20dp"
-            android:paddingRight="10dp"/>
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/from_button"
+                android:layout_height="50dp"
+
+                android:background="@drawable/ic_from_button"
+                android:text=""
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_width="100dp" />
+
+            <Button
+                android:id="@+id/to_button"
+                android:layout_height="50dp"
+                android:layout_gravity="end|bottom"
+                android:background="@drawable/ic_to_button"
+                android:text=""
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_width="100dp" />
+        </LinearLayout>
+
 
     </fragment>
 
