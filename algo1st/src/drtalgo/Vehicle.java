@@ -9,7 +9,7 @@ public class Vehicle {
     private City city;
     private int capacity;
     private int id;
-    BusStop curstop;
+    private BusStop curstop;
     private LinkedList<Passenger> passengers;
     private Trip trip;
 
@@ -21,6 +21,8 @@ public class Vehicle {
         passengers = new LinkedList<>();
         trip = new Trip();
     }
+
+    BusStop getCurstop() {return curstop;}
 
     void addPassengers(List<Passenger> pass_collection){
         for(Passenger pass: pass_collection){
@@ -44,16 +46,15 @@ public class Vehicle {
     }
 
 
-    // TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     Pair<Double, ArrayList<Passenger>> makeSetOfPassengers(int start){
         ArrayList<Boolean> visited = new ArrayList<>();
-        for(int i=0; i<city.passengers.size(); i++){
+        for(int i=0; i<city.getPassengers().size(); i++){
             visited.add(false);
         }
         visited.set(start, true);
         ArrayList<Passenger> result = new ArrayList<>();
         ArrayList<Integer> added = new ArrayList<>();
-        result.add(city.passengers.get(start));
+        result.add(city.getPassengers().get(start));
         int iteration = 0;
         double temperature = 100;
 
@@ -72,12 +73,12 @@ public class Vehicle {
             rem_or_add = rand.nextDouble();
             Passenger tempPass = null;
             if(rem_or_add < prob_of_add || n == 1) {
-                how_many_add = rand.nextInt(city.passengers.size()- n);
+                how_many_add = rand.nextInt(city.getPassengers().size()- n);
                 for(int i=0; i<how_many_add; i++) {
                     do {
-                        it = rand.nextInt(city.passengers.size());
+                        it = rand.nextInt(city.getPassengers().size());
                     } while (visited.get(it));
-                    result.add(city.passengers.get(it));
+                    result.add(city.getPassengers().get(it));
                     visited.set(it, true);
                     added.add(it);
                 }
@@ -96,8 +97,8 @@ public class Vehicle {
                     n += how_many_add;
                 }
                 else {
-                    for(int i=0; i<city.passengers.size(); i++){
-                        if(city.passengers.get(i) == tempPass){
+                    for(int i=0; i<city.getPassengers().size(); i++){
+                        if(city.getPassengers().get(i) == tempPass){
                             visited.set(i, false);
                             break;
                         }
@@ -131,9 +132,9 @@ public class Vehicle {
     public String toString() {
         String output = "Vehicle" + id + "\nPassengers:\n";
         for(Passenger pass: passengers){
-            output+=pass.name + "\n";
+            output+= "\t" + pass.name + "\n";
         }
-        //output += "Trip:\n" + trip.toString();
+        output += "Trip:\n" + trip.toString();
         return output;
     }
 }

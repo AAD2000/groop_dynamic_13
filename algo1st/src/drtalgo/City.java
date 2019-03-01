@@ -8,9 +8,9 @@ import java.util.Stack;
 
 public class City {
     // all stops of the city
-    ArrayList<BusStop> stops;
-    ArrayList<Passenger> passengers;
-    ArrayList<Vehicle> vehicles;
+    private ArrayList<BusStop> stops;
+    private ArrayList<Passenger> passengers;
+    private ArrayList<Vehicle> vehicles;
 
     /**
      * Constructor
@@ -20,6 +20,10 @@ public class City {
         passengers = new ArrayList<>();
         vehicles = new ArrayList<>();
     }
+
+    ArrayList<BusStop> getStops(){return stops;}
+    ArrayList<Passenger> getPassengers(){return passengers;}
+    ArrayList<Vehicle> getVehicles() {return vehicles;}
 
     /**
      * Property of adding stop to the city
@@ -58,7 +62,7 @@ public class City {
             min_dist = Double.MAX_VALUE;
             index = -1;
             for(int i=0; i<passengers.size(); i++){
-                double t=vehicle.curstop.getDistance(passengers.get(i).startPoint);
+                double t=vehicle.getCurstop().getDistance(passengers.get(i).startPoint);
                 if(t < min_dist){
                     min_dist = t;
                     index = i;
