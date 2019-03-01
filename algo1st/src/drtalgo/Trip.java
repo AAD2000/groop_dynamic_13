@@ -13,11 +13,12 @@ public class Trip {
         prefixDistances = new ArrayList<>();
     }
 
-    //trip is a list of a Elements which shows us a trip
+    /** fileds **/
+    // trip is a list of a Elements which shows us a trip
     ArrayList<Element> trip;
+    // array of distances from first stop
     ArrayList<Integer> prefixDistances;
 
-    // algo block!
 
     /***
      * Property of making start trip
@@ -56,6 +57,9 @@ public class Trip {
 
     }
 
+    /**
+     * Generating trip by annealing algorithm
+     */
     void simulateAnnealing(){
         Random rand = new Random();
         int iteration = 0;
@@ -102,11 +106,19 @@ public class Trip {
         setPrefixDistances();
     }
 
+    /**
+     * Method of creating simples
+     * @param passengers
+     * @param startStop
+     */
     void createTrip(List<Passenger> passengers, BusStop startStop){
         makeSimplestTrip(passengers, startStop);
         simulateAnnealing();
     }
 
+    /**
+     * set field
+     */
     void setPrefixDistances(){
         int dist = 0;
         prefixDistances.add(0);
@@ -117,7 +129,7 @@ public class Trip {
     }
 
     /**
-     *
+     * property of total distance
      * @return total Distance of trip
      */
     double getTotalDistance(){
@@ -128,6 +140,10 @@ public class Trip {
         return result;
     }
 
+    /**
+     * Propert of getting average waiting time for every passenger
+     * @return waiting time
+     */
     double getAverageWaitingTime(){
         double wt = 0;
         double n = 0;
@@ -140,7 +156,10 @@ public class Trip {
         return wt/n;
     }
 
-
+    /**
+     * Propert of getting reward
+     * @return reward
+     */
     double getReward(){
         double passenger_length = 0;
         for(int i=0; i<trip.size(); i++){
@@ -152,6 +171,11 @@ public class Trip {
         return passenger_length - getTotalDistance();
     }
 
+    /**
+     * Checking capacity throw the whole trip
+     * @param capacity
+     * @return
+     */
     boolean checkCapacity(int capacity){
         int pass_in = 0;
         for(int i=0; i<trip.size(); i++){
@@ -163,6 +187,10 @@ public class Trip {
             }
         }
         return true;
+    }
+    void clearTrip(){
+        trip.clear();
+        prefixDistances.clear();
     }
 
     @Override

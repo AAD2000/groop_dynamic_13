@@ -6,14 +6,32 @@ import java.util.*;
 
 public class Vehicle {
 
+    /** fields **/
+    // city where vehicle is
     private City city;
+    // the amount of passengers that vehicle can accommodate
     private int capacity;
+    // id number of vehicle
     private int id;
+    // Current Bus Stop of the vehicle
     private BusStop curstop;
+    // passengers that are waiting for this vehicle or are in this vehicle
     private LinkedList<Passenger> passengers;
+    // fiels for algo
     private LinkedList<Passenger> possible_passengers;
+    // current trip of the vehicle
     private Trip trip;
+    // trip for algo
+    private Trip trip_back;
 
+    /** constructor **/
+    /**
+     * Constructor
+     * @param ct city
+     * @param cap capacity
+     * @param ind id of the vehicle
+     * @param stop bus stop
+     */
     public Vehicle(City ct, int cap, int ind, BusStop stop){
         city = ct;
         capacity = cap;
@@ -22,10 +40,16 @@ public class Vehicle {
         passengers = new LinkedList<>();
         possible_passengers = new LinkedList<>();
         trip = new Trip();
+        trip_back = new Trip();
     }
 
+    /** properties **/
     BusStop getCurstop() {return curstop;}
 
+    /**
+     * Property of adding new passengers to this vehicle
+     * @param pass_collection
+     */
     void addPassengers(List<Passenger> pass_collection){
 
         for(Passenger pass: pass_collection){
@@ -38,29 +62,46 @@ public class Vehicle {
         setTrip();
     }
 
-    LinkedList<Passenger> getAllPossiblePassengers(LinkedList<Passenger> ex_passengers){
+    /**
+     * Joining current and possible passengers
+     * @param ex_passengers new possible passengers
+     * @return
+     */
+    private LinkedList<Passenger> getAllPossiblePassengers(LinkedList<Passenger> ex_passengers){
         possible_passengers.clear();
         possible_passengers.addAll(passengers);
         possible_passengers.addAll(ex_passengers);
         return possible_passengers;
     }
 
-    void setTrip(){
+    /**
+     * Property of making trip
+     */
+    private void setTrip(){
         trip.createTrip(passengers, curstop);
     }
 
-    Double calculateProfit(List<Passenger> passengers){
-        Trip trip = new Trip();
-        trip.createTrip(passengers, curstop);
-        double wt = trip.getAverageWaitingTime();
-        double reward = trip.getReward()- 1.5 * wt;
-        if(!trip.checkCapacity(capacity)){
+    /**
+     * Calculating profit trip on set of passengers
+     * @param passengers set of passengers
+     * @return
+     */
+    private Double calculateProfit(List<Passenger> passengers){
+        trip_back.clearTrip();
+        trip_back.createTrip(passengers, curstop);
+        double wt = trip_back.getAverageWaitingTime();
+        double reward = trip_back.getReward()- 1.5 * wt;
+        if(!trip_back.checkCapacity(capacity)){
             reward = Double.MIN_VALUE;
         }
         return reward;
     }
 
-
+    /**
+     * Method of making set of passenger that is the most profitable
+     * @param start
+     * @return
+     */
     Pair<Double, LinkedList<Passenger>> makeSetOfPassengers(int start){
         ArrayList<Boolean> visited = new ArrayList<>();
         for(int i=0; i<city.getNTPassengers().size(); i++){

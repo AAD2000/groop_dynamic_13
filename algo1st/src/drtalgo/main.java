@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class main {
 
-    //starting programm
+    //Example of the algo working
 
     public static void main(String[] args) {
 
@@ -20,6 +20,8 @@ public class main {
         cityFactory.makeCityExample1();
 
         City city = cityFactory.getCity();
+
+        //starting algo
 
         Pair<Double,ArrayList<Vehicle>> result = city.chooseWorkingVehicles();
 

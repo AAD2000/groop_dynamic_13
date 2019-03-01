@@ -7,14 +7,31 @@ import java.util.LinkedList;
 
 public class BetTree {
 
+    /** fields **/
+    // current bet of the vertex
     private Pair<Double,LinkedList<Passenger>> bet;
+    // children of the vertex
     private ArrayList<BetTree> children;
+    // parent of the vertex
     private BetTree parent;
+    // all passengers that was in this vertex or in parents
     private HashSet<Passenger> usedPassengers;
+    // field that shows if vertex has a child
     private boolean used;
+    // field for dfs
     private boolean visited;
+    // vehicle of current bet
     private Vehicle vehicle;
 
+
+    /** constructors **/
+
+    /**
+     * Constructor for a normal bet
+     * @param Bet bet
+     * @param Parent parent
+     * @param veh vehicle
+     */
     public BetTree(Pair<Double,LinkedList<Passenger>> Bet, BetTree Parent, Vehicle veh){
         bet = Bet;
         children = new ArrayList<>();
@@ -31,6 +48,11 @@ public class BetTree {
         }
     }
 
+    /**
+     * Constructor for a zero bet. Used for a stable working of an algo
+     * @param passenger this passenger
+     * @param Parent parent
+     */
     public BetTree(Passenger passenger, BetTree Parent){
         bet = new Pair<>(Double.valueOf(0), new LinkedList<>());
         bet.getValue().add(passenger);
@@ -47,6 +69,11 @@ public class BetTree {
 
     }
 
+    /**
+     * Method that check if current bet and another one are crossing
+     * @param another_bet
+     * @return
+     */
     boolean isBetsCross(LinkedList<Passenger> another_bet){
         for(Passenger pass1: usedPassengers){
             for(Passenger pass2: another_bet){
@@ -59,7 +86,7 @@ public class BetTree {
     }
 
 
-
+    /** properties **/
     void setUsedTrue(){
         used = true;
     }

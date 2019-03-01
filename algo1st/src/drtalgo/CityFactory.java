@@ -1,15 +1,26 @@
 package drtalgo;
 
+/**
+ * Class CityFactory
+ * Use for creating an instance of class City
+ */
 public class CityFactory {
 
+    /** fields **/
+
+    // city that is creating
     private City city;
 
+    /** constructor **/
     public CityFactory(){
         city = new City();
     }
 
     City getCity(){return city;}
 
+    /**
+     * Making an example of city
+     */
     void makeCityExample1(){
         BusStop stop1 = new BusStop("Stop1");
         BusStop stop2 = new BusStop("Stop2");
@@ -46,8 +57,10 @@ public class CityFactory {
         Vehicle vehicle1 = new Vehicle(city, 20, 1, stop1);
         Vehicle vehicle2 = new Vehicle(city, 20, 2, stop4);
 
+
         city.addVehicle(vehicle1);
         city.addVehicle(vehicle2);
+
     }
 
 
