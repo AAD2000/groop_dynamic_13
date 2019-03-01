@@ -132,7 +132,7 @@ public class Vehicle {
     public String toString() {
         String output = "Vehicle" + id + "\nPassengers:\n";
         for(Passenger pass: passengers){
-            output+=pass.name + "\n";
+            output+= "\t" + pass.name + "\n";
         }
         output += "Trip:\n" + trip.toString();
         return output;

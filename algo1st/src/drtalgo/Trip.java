@@ -159,9 +159,9 @@ public class Trip {
         String output=trip.get(0).name;
         for(int i=1;i<trip.size();i++) {
             output += " \n-{" + trip.get(i - 1).getDistance(trip.get(i)) + "}-> (" + trip.get(i).order + ")  " + trip.get(i).name + " " + trip.get(i).stop.toString();
-            if(prefixDistances.size() != 0){
+            /*if(prefixDistances.size() != 0){
                 output += " " + prefixDistances.get(i);
-            }
+            }*/
         }
          output += "\nTOTAL DISTANCE: " + getTotalDistance();
         return output;
