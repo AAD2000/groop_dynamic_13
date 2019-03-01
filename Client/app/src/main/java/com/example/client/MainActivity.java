@@ -107,7 +107,8 @@ public class MainActivity extends AppCompatActivity
 
         mMap.setOnMarkerClickListener(v -> {
             Button order =(Button)findViewById(R.id.order_button);
-            order.setVisibility(View.INVISIBLE);
+
+  order.setVisibility(View.INVISIBLE);
             if(selected!=null)
                 selected.setAlpha(0.5f);
             v.showInfoWindow();
@@ -133,6 +134,8 @@ public class MainActivity extends AppCompatActivity
         Button to_button =(Button)findViewById(R.id.to_button);
 
         from_button.setOnClickListener(b->{
+            Button order =(Button)findViewById(R.id.order_button);
+            order.setVisibility(View.INVISIBLE);
             if(from==null) {
                 selected.setAlpha(1f);
                 from = selected;
@@ -147,13 +150,14 @@ public class MainActivity extends AppCompatActivity
                 from.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
             }
             selectButton.setVisibility(View.INVISIBLE);
-            if(from!=null && to!=null) {
-                Button order = (Button) findViewById(R.id.order_button);
+            if(from!=null && to!=null && !from.getTitle().equals(to.getTitle())) {
                 order.setVisibility(View.VISIBLE);
             }
         });
 
         to_button.setOnClickListener(b->{
+            Button order =(Button)findViewById(R.id.order_button);
+            order.setVisibility(View.INVISIBLE);
             if(to==null) {
                 selected.setAlpha(1f);
                 to = selected;
@@ -168,8 +172,7 @@ public class MainActivity extends AppCompatActivity
                 to.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
             }
             selectButton.setVisibility(View.INVISIBLE);
-            if(from!=null && to!=null){
-                Button order =(Button)findViewById(R.id.order_button);
+            if(from!=null && to!=null && !from.getTitle().equals(to.getTitle())){
                 order.setVisibility(View.VISIBLE);
             }
         });
