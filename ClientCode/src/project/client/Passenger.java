@@ -112,10 +112,7 @@ public class Passenger extends Client {
 
         Thread.sleep(1000);
 
-        /*client.tell(
-                    UserInformation.createInstance("Tohenz", "44234123","Kalinin&Anton",
-                            "8999213123", 'u', 'y'),
-                    ActorRef.noSender());*/
+
         while(!isLogged) {
             // Регистрация и вход
             // Ничего другого умного не придумал, так как Actor максимально закрыт
@@ -124,7 +121,6 @@ public class Passenger extends Client {
                     UserInformation.createInstance(in.nextLine(), "44234123","",
                             "", 'u', 'n'),
                     ActorRef.noSender());
-
             Thread.sleep(1000);
         }
 
