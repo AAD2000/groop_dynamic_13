@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0e7faae-c2e5-4ceb-b818-54047d0f90f4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ClientCode/src/project/client/Passenger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientCode/src/project/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClientCode/src/project/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientCode/src/project/client/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClientCode/src/project/client/Passenger.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/ClientPart/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +17,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ClientCode/src/project/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+            <state relative-caret-position="-269">
+              <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="49" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -28,14 +29,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ClientCode/src/project/client/Passenger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="902">
-              <caret line="104" column="41" lean-forward="true" selection-start-line="104" selection-start-column="41" selection-end-line="104" selection-end-column="41" />
+            <state relative-caret-position="474">
+              <caret line="121" column="54" selection-start-line="121" selection-start-column="54" selection-end-line="121" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#474#475#0" expanded="true" />
                 <element signature="e#534#535#0" expanded="true" />
-                <element signature="e#389#390#0" expanded="true" />
-                <element signature="e#418#419#0" expanded="true" />
+                <element signature="e#592#593#0" expanded="true" />
+                <element signature="e#621#622#0" expanded="true" />
+                <element signature="e#929#930#0" expanded="true" />
+                <element signature="e#990#991#0" expanded="true" />
+                <element signature="e#1053#1054#0" expanded="true" />
+                <element signature="e#1130#1131#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -87,8 +92,8 @@
       <list>
         <option value="$PROJECT_DIR$/ClientPart/src/project/client/Client.java" />
         <option value="$PROJECT_DIR$/ClientCode/src/com/server/ServerInformation.java" />
-        <option value="$PROJECT_DIR$/ClientCode/src/project/client/Passenger.java" />
         <option value="$PROJECT_DIR$/ClientCode/src/project/client/Client.java" />
+        <option value="$PROJECT_DIR$/ClientCode/src/project/client/Passenger.java" />
       </list>
     </option>
   </component>
@@ -147,7 +152,7 @@
     <property name="Repository.Attach.Sources" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551403555171" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551405902929" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -201,7 +206,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1551382398589</updated>
-      <workItem from="1551382399890" duration="6471000" />
+      <workItem from="1551382399890" duration="8762000" />
     </task>
     <task id="LOCAL-00001" summary="Another one">
       <created>1551382603004</created>
@@ -231,15 +236,21 @@
       <option name="project" value="LOCAL" />
       <updated>1551401440918</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Улучшил архитектуру кода">
+      <created>1551403575735</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1551403575735</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6471000" />
+    <option name="totallyTimeSpent" value="8762000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Designer" />
@@ -256,7 +267,7 @@
       <window_info anchor="bottom" id="Event Log" sideWeight="0.50183153" side_tool="true" weight="0.32857144" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.498779" visible="true" weight="0.32959184" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.498779" weight="0.32959184" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3995381" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -334,7 +345,8 @@
     <MESSAGE value="Another one" />
     <MESSAGE value="Try to add my code" />
     <MESSAGE value="Added entering" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added entering" />
+    <MESSAGE value="Улучшил архитектуру кода" />
+    <option name="LAST_COMMIT_MESSAGE" value="Улучшил архитектуру кода" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ClientCode/src/com/server/Message.java">
@@ -356,21 +368,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ClientCode/src/project/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        <state relative-caret-position="-269">
+          <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="49" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ClientCode/src/project/client/Passenger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="902">
-          <caret line="104" column="41" lean-forward="true" selection-start-line="104" selection-start-column="41" selection-end-line="104" selection-end-column="41" />
+        <state relative-caret-position="474">
+          <caret line="121" column="54" selection-start-line="121" selection-start-column="54" selection-end-line="121" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#474#475#0" expanded="true" />
             <element signature="e#534#535#0" expanded="true" />
-            <element signature="e#389#390#0" expanded="true" />
-            <element signature="e#418#419#0" expanded="true" />
+            <element signature="e#592#593#0" expanded="true" />
+            <element signature="e#621#622#0" expanded="true" />
+            <element signature="e#929#930#0" expanded="true" />
+            <element signature="e#990#991#0" expanded="true" />
+            <element signature="e#1053#1054#0" expanded="true" />
+            <element signature="e#1130#1131#0" expanded="true" />
           </folding>
         </state>
       </provider>
