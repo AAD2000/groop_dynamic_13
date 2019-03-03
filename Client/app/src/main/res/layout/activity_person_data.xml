@@ -2,140 +2,152 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/side_nav_bar"
     tools:context=".PersonData">
 
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="696dp"
-        android:text="@string/personalData"
-        android:textColor="@color/colorWhite"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/person_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="16dp"
+            android:text="@string/personalData"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/phone"
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/person_data"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:paddingLeft="10dp"
-                android:text="@string/phone"
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp"
-                tools:ignore="RtlSymmetry" />
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/phone_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_textbox_background"
-                android:ems="10"
-                android:inputType="phone"
-                android:padding="10dp"
-                android:text="101010101010000000000000000000"
-                android:textColor="@color/colorPrimaryDark" />
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="@string/phone"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    tools:ignore="RtlSymmetry" />
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:paddingLeft="10dp"
-                android:text="@string/name"
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp"
-                tools:ignore="RtlSymmetry" />
+                <EditText
+                    android:id="@+id/phone_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_textbox_background"
+                    android:ems="10"
+                    android:inputType="phone"
+                    android:maxLength="12"
+                    android:padding="10dp"
+                    android:text="+01010101010"
+                    android:textColor="@color/colorPrimaryDark" />
 
-            <EditText
-                android:id="@+id/name_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_textbox_background"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:padding="10dp"
-                android:text="test"
-                android:textColor="@color/colorPrimaryDark" />
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="@string/name"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    tools:ignore="RtlSymmetry" />
 
-
-            <TextView
-                android:id="@+id/surname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:paddingLeft="10dp"
-                android:text="@string/surname"
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp"
-                tools:ignore="RtlSymmetry" />
-
-            <EditText
-                android:id="@+id/surname_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_textbox_background"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:padding="10dp"
-                android:text="Surtest"
-                android:textColor="@color/colorPrimaryDark" />
+                <EditText
+                    android:id="@+id/name_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_textbox_background"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:padding="10dp"
+                    android:text="test"
+                    android:textColor="@color/colorPrimaryDark" />
 
 
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/ic_button"
-                android:text="@string/save"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                <TextView
+                    android:id="@+id/surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="@string/surname"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    tools:ignore="RtlSymmetry" />
 
-        </LinearLayout>
-    </ScrollView>
+                <EditText
+                    android:id="@+id/surname_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_textbox_background"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:padding="10dp"
+                    android:text="Surtest"
+                    android:textColor="@color/colorPrimaryDark" />
 
+                <Button
+                    android:id="@+id/change_password_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/ic_change_password"
+                    android:text="@string/changePassword"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
+                <Button
+                    android:id="@+id/save_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/ic_change_password"
+                    android:text="@string/save"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

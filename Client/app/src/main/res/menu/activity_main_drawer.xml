@@ -7,17 +7,18 @@
         <item
             android:id="@+id/nav_person"
             android:icon="@drawable/ic_person_outline_black_24dp"
-            android:title="Person" />
-
-        <item
-            android:id="@+id/nav_change_photo"
-            android:icon="@drawable/ic_history_black_24dp"
-            android:title="History" />
+            android:title="Пресональные данные" />
 
         <item
             android:id="@+id/nav_feedback"
             android:icon="@drawable/ic_phone_black_24dp"
-            android:title="Feedback" />
+            android:title="Обратная связь" />
+
+        <item
+            android:id="@+id/log_out"
+            android:icon="@drawable/ic_exit"
+            android:title="Выйти из аккаунта" />
+
     </group>
 
 

@@ -17,4 +17,13 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="AppTheme.WhiteAccent">
+        <item name="colorAccent">@color/colorWhite</item> <!-- Whatever color you want-->
+    </style>
+
+    <style name="AppThemeMyLight" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">#0091ea</item>
+    </style>
+
+
 </resources>

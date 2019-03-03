@@ -5,4 +5,8 @@
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+    <style name="MyProgressBarCircular" parent="@style/Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateTint">#b71c1c</item>
+    </style>
 </resources>

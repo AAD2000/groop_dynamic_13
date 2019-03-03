@@ -11,6 +11,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,97 +26,86 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
 
-    GoogleMap mMap;
-    Marker selected;
-    Marker from;
-    Marker to;
-    ArrayList<Marker> markers=new ArrayList<Marker>();
-    @Override
 
+    int REQUEST_CODE=1;
+    Person account;
+    GoogleMap mMap;
+    Integer selected = -1;
+    Integer from = -1;
+    Integer to = -1;
+    ArrayList<Marker> markers = new ArrayList<Marker>();
+    String[] tittles;
+    SharedPreferences nickname;
+    SharedPreferences password;
+    final String nn="";
+    final String pw="";
+
+
+    @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
-// Add a marker in Sydney and move the camera
         markers.add(mMap.addMarker(new MarkerOptions()
-                .snippet("Ижевск, " +
-                        "республика Удмуртия, " +
-                        "426008")
                 .position(new LatLng(56.852502, 53.211487))
                 .title("Центральная площадь")));
         markers.add(mMap.addMarker(new MarkerOptions()
-                .snippet("Ижевск, " +
-                        "республика Удмуртия, " +
-                        "426011")
                 .position(new LatLng(56.875877, 53.205766))
                 .title("ТРЦ Талисман")));
         markers.add(mMap.addMarker(new MarkerOptions()
-                .snippet("Ижевск, " +
-                        "республика Удмуртия")
                 .position(new LatLng(56.872374, 53.292187))
                 .title("ТРК Петровский")));
         markers.add(mMap.addMarker(new MarkerOptions()
-                .snippet("Ижевск, " +
-                        "республика Удмуртия, " +
-                        "426033")
                 .position(new LatLng(56.861238, 53.177036))
                 .title("Парк имени Кирова")));
         markers.add(mMap.addMarker(new MarkerOptions()
-                .snippet("Ижевск, " +
-                        "республика Удмуртия, " +
-                        "426051")
                 .position(new LatLng(56.845687, 53.199847))
                 .title("Парк имени Горького")));
         markers.add(mMap.addMarker(new MarkerOptions()
-                .snippet("Ижевск, " +
-                        "республика Удмуртия, " +
-                        "426057")
                 .position(new LatLng(56.847458, 53.203977))
                 .title("Аксион")));
         markers.add(mMap.addMarker(new MarkerOptions()
-                .snippet("Ижевск, " +
-                        "республика Удмуртия, " +
-                        "426033")
                 .position(new LatLng(56.865512, 53.175523))
                 .title("Зоопарк")));
         markers.add(mMap.addMarker(new MarkerOptions()
-                .snippet("Ижевск, " +
-                        "республика Удмуртия, " +
-                        "426075")
                 .position(new LatLng(56.845735, 53.288988))
                 .title("ТЦ Кит")));
-
         markers.add(mMap.addMarker(new MarkerOptions()
-                .snippet("Ижевск, " +
-                        "республика Удмуртия, " +
-                        "426065")
                 .position(new LatLng(56.870221, 53.280253))
                 .title("ТРЦ Столица")));
 
-        for (Marker m :markers) {
+        tittles = new String[markers.size()];
+        for (int i = 0; i < markers.size(); i++) {
+            tittles[i] = markers.get(i).getTitle();
+        }
+
+        for (Marker m : markers) {
             m.setAlpha(0.5f);
+
             m.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
         }
 
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(56.852502, 53.211487), 12.0f));
 
         mMap.setOnMarkerClickListener(v -> {
-            Button order =(Button)findViewById(R.id.order_button);
+            Button order = (Button) findViewById(R.id.order_button);
 
-  order.setVisibility(View.INVISIBLE);
-            if(selected!=null)
-                selected.setAlpha(0.5f);
+            order.setVisibility(View.INVISIBLE);
+            if (selected != -1)
+                markers.get(selected).setAlpha(0.5f);
             v.showInfoWindow();
             v.setAlpha(1f);
-            selected=v;
-            LinearLayout selectButton= (LinearLayout)findViewById(R.id.buttons_to_order);
+            selected = markers.indexOf(v);
+            LinearLayout selectButton = (LinearLayout) findViewById(R.id.buttons_to_order);
             selectButton.setVisibility(View.VISIBLE);
             return true;
         });
@@ -124,55 +115,59 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        LinearLayout selectButton= (LinearLayout)findViewById(R.id.buttons_to_order);
+        account = new Person("Alex", "Danilov", "aUTKFTHFFUIYFUOFYIKFYUad", "+79130105461", "123123123");
+
+
+        LinearLayout selectButton = (LinearLayout) findViewById(R.id.buttons_to_order);
         selectButton.setVisibility(View.INVISIBLE);
 
-        Button from_button =(Button)findViewById(R.id.from_button);
-        Button to_button =(Button)findViewById(R.id.to_button);
+        Button from_button = (Button) findViewById(R.id.from_button);
+        Button to_button = (Button) findViewById(R.id.to_button);
 
-        from_button.setOnClickListener(b->{
-            Button order =(Button)findViewById(R.id.order_button);
+        from_button.setOnClickListener(b -> {
+            Button order = (Button) findViewById(R.id.order_button);
             order.setVisibility(View.INVISIBLE);
-            if(from==null) {
-                selected.setAlpha(1f);
+            if (from == -1) {
+                markers.get(selected).setAlpha(1f);
                 from = selected;
-                selected = null;
-                from.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-            }else{
-                from.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
-                from.setAlpha(0.5f);
-                selected.setAlpha(1f);
+                selected = -1;
+                markers.get(from).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            } else {
+                markers.get(from).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
+                markers.get(from).setAlpha(0.5f);
+                markers.get(selected).setAlpha(1f);
                 from = selected;
-                selected = null;
-                from.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                selected = -1;
+                markers.get(from).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
             }
             selectButton.setVisibility(View.INVISIBLE);
-            if(from!=null && to!=null && !from.getTitle().equals(to.getTitle())) {
+            if (from != -1 && to != -1 && !markers.get(from).getTitle().equals(markers.get(to).getTitle())) {
                 order.setVisibility(View.VISIBLE);
             }
         });
 
-        to_button.setOnClickListener(b->{
-            Button order =(Button)findViewById(R.id.order_button);
+        to_button.setOnClickListener(b -> {
+            Button order = (Button) findViewById(R.id.order_button);
             order.setVisibility(View.INVISIBLE);
-            if(to==null) {
-                selected.setAlpha(1f);
+            if (to == -1) {
+                markers.get(selected).setAlpha(1f);
                 to = selected;
-                selected = null;
-                to.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-            }else{
-                to.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
-                to.setAlpha(0.5f);
-                selected.setAlpha(1f);
+                selected = -1;
+                markers.get(to).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+            } else {
+                markers.get(to).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
+                markers.get(to).setAlpha(0.5f);
+                markers.get(selected).setAlpha(1f);
                 to = selected;
-                selected = null;
-                to.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                selected = -1;
+                markers.get(to).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
             }
             selectButton.setVisibility(View.INVISIBLE);
-            if(from!=null && to!=null && !from.getTitle().equals(to.getTitle())){
+            if (from != -1 && to != -1 && !markers.get(from).getTitle().equals(markers.get(to).getTitle())) {
                 order.setVisibility(View.VISIBLE);
             }
         });
@@ -180,16 +175,33 @@ public class MainActivity extends AppCompatActivity
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        Button order =(Button)findViewById(R.id.order_button);
+        Button order = (Button) findViewById(R.id.order_button);
         order.setVisibility(View.INVISIBLE);
+        order.setOnClickListener(b -> {
+            Intent intent = new Intent(this, PaymentActivity.class);
+            intent.putExtra("tittles", tittles);
+            intent.putExtra("intFrom", from);
+            intent.putExtra("intTo", to);
+            startActivity(intent);
 
-        //order.setOnClickListener(b->{});
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                TextView ns=(TextView)drawerView.findViewById(R.id.nav_name_surname);
+                ns.setText(account.getName()+" "+account.getSurname());
+                TextView tph=(TextView)drawerView.findViewById(R.id.nav_phone);
+                tph.setText(account.getTelephone());
+            }
+        };
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -206,26 +218,24 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        if (resultCode == RESULT_OK) {
+            String[]arr=data.getStringArrayExtra("data");
+            if(arr!=null) {
+                account.setName(arr[0]);
+                account.setSurname(arr[1]);
+                account.setTelephone(arr[2]);
+            }
+            //TextView ns=(TextView)findViewById(R.id.nav_name_surname);
+            //ns.setText(account.getName()+" "+account.getSurname());
+            //TextView tph=(TextView)findViewById(R.id.nav_phone);
+            //tph.setText(account.getTelephone());
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -234,7 +244,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.nav_person) {
             Intent intent = new Intent(this, PersonData.class);
-            startActivity(intent);
+            intent.putExtra("data", account);
+            startActivityForResult(intent,REQUEST_CODE);
         }
 
 //        if (id == R.id.nav_camera) {
