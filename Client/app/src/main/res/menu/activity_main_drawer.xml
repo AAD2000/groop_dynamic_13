@@ -15,7 +15,7 @@
             android:title="Обратная связь" />
 
         <item
-            android:id="@+id/log_out"
+            android:id="@+id/nav_log_out"
             android:icon="@drawable/ic_exit"
             android:title="Выйти из аккаунта" />
 

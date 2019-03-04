@@ -115,7 +115,11 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if(pw==""||nn=="") {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivityForResult(intent,REQUEST_CODE);
+        }
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -227,11 +231,6 @@ public class MainActivity extends AppCompatActivity
                 account.setSurname(arr[1]);
                 account.setTelephone(arr[2]);
             }
-            //TextView ns=(TextView)findViewById(R.id.nav_name_surname);
-            //ns.setText(account.getName()+" "+account.getSurname());
-            //TextView tph=(TextView)findViewById(R.id.nav_phone);
-            //tph.setText(account.getTelephone());
-
         }
     }
 
@@ -245,6 +244,18 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_person) {
             Intent intent = new Intent(this, PersonData.class);
             intent.putExtra("data", account);
+            startActivityForResult(intent,REQUEST_CODE);
+        }
+        if( id == R.id.nav_log_out){
+            nickname = getPreferences(MODE_PRIVATE);
+            SharedPreferences.Editor ed = nickname.edit();
+            ed.putString(nn, "");
+            ed.commit();
+            password =getPreferences(MODE_PRIVATE);
+            ed=password.edit();
+            ed.putString(pw,"");
+            ed.commit();
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent,REQUEST_CODE);
         }
 
