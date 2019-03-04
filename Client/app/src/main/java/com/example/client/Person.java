@@ -63,4 +63,5 @@ public class Person implements Serializable {
         this.telephone = telephone;
         this.password = password;
     }
+    Person(){};
 }
