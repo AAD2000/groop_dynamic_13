@@ -6,7 +6,11 @@ import akka.actor.ActorRef;
 import akka.io.Tcp;
 import akka.io.TcpMessage;
 import akka.util.ByteString;
+import com.server.ServerInformation;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.math.BigInteger;
 import java.net.InetSocketAddress;
 import java.security.MessageDigest;
@@ -15,7 +19,6 @@ import java.security.NoSuchAlgorithmException;
 public abstract class Client extends AbstractActor {
 
     private final InetSocketAddress remote;
-    protected boolean connected = false;
     static boolean isLogged = false;
 
     // Подключаемся к серверу
@@ -76,6 +79,41 @@ public abstract class Client extends AbstractActor {
                 (String userName, String password, String fullname, String phoneNumber, char group, char register) {
             return new UserInformation(userName, password, fullname, phoneNumber, group,register);
         }
+    }
+
+    public void registration(ServerInformation message) {
+            System.out.println(message.getServerMessage());
+            if (message.isWrongName() || !message.isEntered()) {
+                return;
+            }
+            isLogged = true;
+    }
+
+    ServerInformation getInformation(Tcp.Received msg) {
+        byte[] byteArray = msg.data().toArray();
+        ServerInformation message;
+        // Дессериализация класса
+        try {
+            ObjectInputStream objectInputStream = new ObjectInputStream(
+                    new ByteArrayInputStream(byteArray));
+
+            message = (ServerInformation) objectInputStream.readObject();
+            objectInputStream.close();
+
+        } catch (ClassCastException ex) {
+            System.out.println("Wrong message from server");
+            return null;
+
+        } catch (IOException ex) {
+            System.out.println("Wrong class");
+            return null;
+
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Class hasn't been founded");
+            return null;
+        }
+
+        return message;
     }
 
     @Override
