@@ -38,17 +38,14 @@ public class MainActivity extends AppCompatActivity
 
 
     int REQUEST_CODE=1;
-    Person account;
+    Person account=new Person();
     GoogleMap mMap;
     Integer selected = -1;
     Integer from = -1;
     Integer to = -1;
     ArrayList<Marker> markers = new ArrayList<Marker>();
     String[] tittles;
-    SharedPreferences nickname;
-    SharedPreferences password;
-    final String nn="";
-    final String pw="";
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -115,7 +112,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(pw==""||nn=="") {
+
+        sharedPreferences=getSharedPreferences("data",0);
+
+        if("".equals(sharedPreferences.getString("nickname", "")) && "".equals(sharedPreferences.getString("password", ""))) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent,REQUEST_CODE);
         }
@@ -123,7 +123,6 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        account = new Person("Alex", "Danilov", "aUTKFTHFFUIYFUOFYIKFYUad", "+79130105461", "123123123");
 
 
         LinearLayout selectButton = (LinearLayout) findViewById(R.id.buttons_to_order);
@@ -231,6 +230,24 @@ public class MainActivity extends AppCompatActivity
                 account.setSurname(arr[1]);
                 account.setTelephone(arr[2]);
             }
+            String[] p=data.getStringArrayExtra("person_logged_in");
+            if(p!=null){
+//                person[0]="Alex";
+//                person[1]="Danilov";
+//                person[2]=password_edit.getText().toString();
+//                person[3]="+79130105461";
+//                person[4]=nickname_edit.getText().toString();
+                account.setName(p[0]);
+                account.setSurname(p[1]);
+                account.setPassword(p[2]);
+                account.setTelephone(p[3]);
+                account.setNickname(p[4]);
+                sharedPreferences=getSharedPreferences("data",0);
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putString("nickname",account.getNickname());
+                editor.putString("password",account.getPassword());
+                editor.commit();
+            }
         }
     }
 
@@ -247,16 +264,13 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(intent,REQUEST_CODE);
         }
         if( id == R.id.nav_log_out){
-            nickname = getPreferences(MODE_PRIVATE);
-            SharedPreferences.Editor ed = nickname.edit();
-            ed.putString(nn, "");
-            ed.commit();
-            password =getPreferences(MODE_PRIVATE);
-            ed=password.edit();
-            ed.putString(pw,"");
-            ed.commit();
+            SharedPreferences.Editor editor=sharedPreferences.edit();
+            editor.putString("nickname","");
+            editor.putString("password","");
+            editor.commit();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent,REQUEST_CODE);
+
         }
 
 //        if (id == R.id.nav_camera) {
