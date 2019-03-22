@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="com.typesafe.akka:akka-actor_2.12:2.5.21" type="repository">
+    <properties maven-id="com.typesafe.akka:akka-actor_2.12:2.5.21" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/akka-actor_2.12-2.5.21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scala-library-2.12.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/config-1.3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/scala-java8-compat_2.12-0.8.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
